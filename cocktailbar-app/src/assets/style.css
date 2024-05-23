@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'MyFont';
+  src:
+    url('@/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+    font-family: 'MyFont', sans-serif;
+    background-color: rgb(252, 250, 243);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: rgb(30,37,4);
+}
+
+body.dark-mode {
+  
+    color: rgb(244,242,235);
+    /* Jasny tekst */
+  
+  }
