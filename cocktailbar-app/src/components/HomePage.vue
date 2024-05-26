@@ -1,4 +1,4 @@
-<template #item="{ item, props, hasSubmenu }">
+<template >
   <H1>cocktailservice.pl</H1>
   Strona w budowie 
 </template>
