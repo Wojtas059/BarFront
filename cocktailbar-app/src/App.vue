@@ -1,43 +1,40 @@
 <template>
-  <div :class="{ 'dark-mode': isDarkMode }">
-  <NavBar :isDarkMode="isDarkMode" @toggle-dark-mode="toggleDarkMode" />
-
-  <HomePage />
-<!-- reszta twojego kodu -->
+  <div>
+    <NavBar />
+    <router-view  v-slot="{ Component}" >
+      <component :is="Component" />
+    </router-view>
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue'
-import HomePage from './components/HomePage.vue'
 
 export default {
+  components: {
+    NavBar,
+  },
   data() {
     return {
-      isDarkMode: false
+      isDarkMode: true
     };
   },
   methods: {
-    toggleDarkMode() {
-      this.isDarkMode = !this.isDarkMode;
-    }
-  },
 
-  components: {
-    NavBar,
-    HomePage
-  }
+  },
 
 };
 </script>
 
 <style>
-  .dark-mode {
-    background-color: rgb(38, 48, 61);
-    color: #fff;
-  }
+  /* .dark-mode { */
+    /* background-color: rgb(25, 37, 53); */
+    /* background-image: url('@/assets/kieliszki.png');
+    color: var(--dark-color-font)
+  } */
 
   body {
+    margin: 0;
     transition: background-color 0.3s, color 0.3s;
   }
 </style>
