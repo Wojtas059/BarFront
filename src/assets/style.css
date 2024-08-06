@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'MyFont';
+  src:
+    url('@/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root{
+  --dark-color-background: #1f252f;
+  --dark-color-font: #F0F5E8;
+}
+
+
+
+body {
+    font-family: 'MyFont', sans-serif;
+    /* background-color: rgb(252, 250, 243); */
+    letter-spacing: 2px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--dark-color-font);
+    text-transform: uppercase;
+}
+
+
+
+body.dark-mode {
+    color: rgb(244,242,235);
+    /* Jasny tekst */
+  
+  }
+
+
+.contact-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-top: 120px;
+  box-sizing: border-box;
+  background-color: var(--dark-color-background);
+  width: 80%;
+  margin: 0 auto;
+  top: 70px;
+}
+.dark-mode .contact-page {
+  background-color: var(--dark-color-background);
+
+}
+
+form {
+  text-transform: uppercase;
+}
+
+.main-column {
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.column {
+  width: 48%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.column h2 {
+  margin-bottom: 10%;
+}
+.right-collumn {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.form-group {
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-group select {
+  width: 99%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.left-column {
+  border-right: 1px solid; 
+}
+
+.left-column h4 {
+  margin-top: 40%;
+  padding-right: 20px;
+}
+
+.left-column h3 {
+  margin-top: 26%;
+  padding-right: 20px;
+}
+
+.left-column p {
+  margin-top: 8%;
+  padding-right: 20px;
+}
+
+ .manager h3 {
+ margin: 0;
+}
+
+.contact-info {
+  font-size: 0.9em; /* Smaller font size for contact information */
+}
+
+.footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid ;
+}
+
+.email {
+  word-wrap: break-word; /* Ensure long words break and wrap */
+  overflow-wrap: break-word; /* Modern alternative */
+  word-break: break-all; /* Break long words to ensure they fit */
+}
+
+.column a {
+  display: block;
+  color: var(--dark-color-font);
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+
+.footer a {
+  display: block;
+  color: var(--dark-color-font);
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+
+button {
+  
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: var(--dark-color-font);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: var(--dark-color-background);
+  border: 1px solid var(--);
+  margin: 4px 0;
+}
+
+.dark-mode button {
+  border: 1px solid var(--dark-color-font);
+  color: var(--dark-color-font);
+  background-color: var(--dark-color-background);
+}
+button:hover {
+  background-color: #b1afaf; 
+}
+
+.success-message {
+  margin-top: 20px;
+  color: green;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .main-column {
+    width: 100%; /* Set width to 98% for mobile */
+    font-size: 14px;
+  }
+
+  .block {
+    flex-direction: column;
+  }
+
+  .right-collumn {
+    padding-left: 10px;
+  }
+  .column {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .left-column {
+    border-right: none; /* Remove border on smaller screens */
+    border-bottom: 1px solid;
+  }
+
+  .left-column h4 {
+    margin-top: 10PX;
+  }
+
+  .left-column h3 {
+    margin-top: 10PX;
+  }
+
+  .left-column p {
+    margin-top: 10px;
+  }
+
+  .column:last-child {
+    margin-bottom: 0;
+  }
+
+  .footer {
+    padding-top: 10px;
+  }
+}

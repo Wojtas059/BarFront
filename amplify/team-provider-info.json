@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cocktailbarapp-dev-60f3c-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891377198958:role/amplify-cocktailbarapp-dev-60f3c-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891377198958:role/amplify-cocktailbarapp-dev-60f3c-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-cocktailbarapp-dev-60f3c-deployment",
+      "UnauthRoleName": "amplify-cocktailbarapp-dev-60f3c-unauthRole",
+      "StackName": "amplify-cocktailbarapp-dev-60f3c",
+      "StackId": "arn:aws:cloudformation:eu-central-1:891377198958:stack/amplify-cocktailbarapp-dev-60f3c/5f7c32e0-16c8-11ef-99e9-0aaef7bb2a55",
+      "AmplifyAppId": "d1py0md3t24qc2"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}
