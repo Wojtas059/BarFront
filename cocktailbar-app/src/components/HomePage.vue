@@ -29,7 +29,7 @@ body, html {
 }
 
 .hero-section {
-  background: url('@/assets/@Alexey_Pilipenko 0153.JPG') no-repeat center center/cover; /* Upewnij się, że ścieżka jest poprawna */
+  background: url('@/assets/Alexey_Pilipenko 0153.jpg') no-repeat center center/cover; /* Upewnij się, że ścieżka jest poprawna */
   height: 100vh;
   position: relative;
   display: flex;
