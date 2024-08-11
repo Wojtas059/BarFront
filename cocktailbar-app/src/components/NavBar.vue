@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" :class="{'dark-mode': isDarkMode }">
+  <nav class="navbar" :class="{ 'dark-mode': isDarkMode }">
     <div class="navbar-logo">
       <router-link to="/">
         <img :src="logoSrc" alt="Logo" />
@@ -12,11 +12,26 @@
       <span></span>
     </div>
 
-    <ul class="navbar-list" v-click-outside="closeMenu" :class="{ active: isOpen || isHovered }" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
-      <li v-for="(item, index) in menuItems" :key="index">
-        <router-link :to="item.link" exact-active-class="active">{{item.name}}</router-link>
+    <ul class="navbar-list" :class="{ active: isOpen || isHovered }" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+      <li v-for="(item, index) in menuItems" :key="index" @mouseover="handleSubmenuMouseOver(index)" @mouseleave="handleSubmenuMouseLeave">
+        <router-link :to="item.link" exact-active-class="active">{{ item.name }}</router-link>
+        <!-- Submenu -->
+        <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index }">
+          <li v-for="(subItem, subIndex) in item.subItems" :key="subIndex">
+            <router-link :to="subItem.link">{{ subItem.name }}</router-link>
+          </li>
+        </ul>
       </li>
     </ul>
+    <div class="vertical-line"></div>
+    <div class="language-select">
+      <ul class="nav-menu">
+        <li>
+          <router-link to="" exact-active-class="active">PL</router-link>
+          <router-link to="" exact-active-class="active">EN</router-link>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -26,12 +41,16 @@ export default {
     return {
       isOpen: false,
       isHovered: false,
+      isSubmenuOpen: null,
+      hoverTimeout: null,
       isDarkMode: true,
-      isMobile: false,
       menuItems: [
         { name: 'Home', link: '/' },
         { name: 'O Nas', link: '/about' },
-        { name: 'Oferta', link: '/offer' },
+        { name: 'Oferta', link: '/offer/event', subItems: [
+          { name: 'Oferta wypożyczalni', link: '/offer/rent' },
+          { name: 'Oferta eventowa', link: '/offer/event' }
+        ]},
         { name: 'Sklep', link: '/shop' },
         { name: 'Portfolio', link: '/portfolio' },
         { name: 'Kontakt', link: '/contact' },
@@ -40,43 +59,34 @@ export default {
   },
   computed: {
     logoSrc() {
-      return require('@/assets/Cocktail-Service-logo-RGB-WHITE.png');
+      return require('@/assets/logs/Cocktail-Service-logo-RGB-WHITE.png');
     },
   },
   methods: {
-    toggleMenu() {
-      this.isOpen = !this.isOpen;
-    },
+    // toggleMenu() {
+    //   this.isOpen = !this.isOpen;
+    // },
     handleMouseOver() {
-      this.isHovered = true;
+      clearTimeout(this.hoverTimeout);
+      this.isOpen = true;
     },
     handleMouseLeave() {
-      this.isHovered = false;
+      this.hoverTimeout = setTimeout(() => {
+        this.isOpen = false;
+      }, 300)
+    },
+    handleSubmenuMouseOver(index) {
+      this.isSubmenuOpen = index;
+    },
+    handleSubmenuMouseLeave() {
+      this.isSubmenuOpen = null;
     },
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
       document.body.classList.toggle('dark-mode', this.isDarkMode);
       localStorage.setItem('isDarkMode', this.isDarkMode);
     },
-    checkMobile() {
-      this.isMobile = window.innerWidth <= 768;
-    },
-    closeMenu() {
-      this.isOpen = false;
-    },
-  },
-  mounted() {
-    const savedDarkMode = localStorage.getItem('isDarkMode');
-    if (savedDarkMode) {
-      this.isDarkMode = JSON.parse(savedDarkMode);
-      document.body.classList.toggle('dark-mode', this.isDarkMode);
-    }
-    this.checkMobile();
-    window.addEventListener('resize', this.checkMobile);
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.checkMobile);
-  },
+  }
 };
 </script>
 
@@ -84,16 +94,13 @@ export default {
 .navbar {
   letter-spacing: 3px;
   font-size: 14px;
-  background: var(--dark-color-background);
-  position: fixed; /* Fix the navbar to the top */
-  justify-content: center;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  flex-grow: 1;
   align-items: center;
   padding: 15px;
   background-color: var(--light-color-background);
@@ -102,14 +109,14 @@ export default {
 }
 
 .navbar.dark-mode {
-  background-color:  var(--dark-color-background);
+  background-color: var(--dark-color-background);
 }
 
 .navbar-logo {
-  /* margin-right: auto; */
   position: absolute;
   left: 10px;
 }
+
 
 .navbar-logo router-link {
   display: inline-block;
@@ -130,28 +137,31 @@ export default {
 .navbar-list {
   display: flex;
   list-style: none;
-  justify-content: center;
+  justify-content: flex-end;
   flex-grow: 1;
-  transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
   margin: 0;
-  margin-left: 25px;
+  margin-right: 25px;
   padding: 0;
 }
 
+
 .navbar-list.active {
-  max-height: 200px; /* Dostosuj w zależności od liczby elementów menu */
+  max-height: 200px;
+  /* Dostosuj w zależności od liczby elementów menu */
   opacity: 1;
   visibility: visible;
 }
 
+.navbar-list li {
+  position: relative;
+}
 
 .navbar-list li a {
-  display: block; 
+  display: block;
   color: var(--light-color-font);
-  padding: 20px 15px; /* Zwiększenie paddingu dla większego obszaru podświetlenia */
+  padding: 20px 20px;
+  /* padding: 5px 5px; */
+  /* margin: 20px 20px; */
   text-decoration: none;
   transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
   border-bottom: 2px solid transparent;
@@ -161,14 +171,15 @@ export default {
   color: var(--dark-color-font);
 }
 
-.navbar-list li a:hover, .navbar-list li .active {
-  text-decoration: none;
-  border-bottom: 2px solid var(--dark-color-font);
+.navbar-list li a:hover {
+  border-bottom: 2px solid var(--dark-color-font) 
 }
 
 .navbar-list li .active {
-  border-bottom: 2px solid var(--dark-color-font); /* Widoczne dolne obramowanie */
-  color: var(--dark-color-font); /* Możesz także zmienić kolor tekstu, jeśli chcesz */
+  border-bottom: 2px solid var(--dark-color-font);
+  /* Widoczne dolne obramowanie */
+  color: var(--dark-color-font);
+  /* Możesz także zmienić kolor tekstu, jeśli chcesz */
 }
 
 
@@ -185,7 +196,7 @@ export default {
 .navbar-toggle span {
   height: 3px;
   width: 25px;
-  background-color:  var(--dark-color-background);
+  background-color: var(--dark-color-background);
   margin: 4px 0;
   border-radius: 1px;
 }
@@ -193,6 +204,7 @@ export default {
 .dark-mode .navbar-toggle span {
   background-color: var(--dark-color-font);
 }
+
 .navbar button {
   margin-right: 50px;
 }
@@ -217,63 +229,154 @@ export default {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    height: 40px;
-  }
 
-  /* .navbar-logo {
-    display: none;
-  } */
+.nav-menu {
+  display: flex;
+  /* Ustawia elementy w poziomej linii */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.language-select {
+  display: flex;
+  /* Ustawia flexbox na kontenerze */
+  justify-content: center;
+  /* Centruje zawartość poziomo */
+  align-items: center;
+  /* Centruje zawartość pionowo, jeśli kontener ma większą wysokość */
+  height: auto;
+  width: auto;
+  color: var(--dark-color-font);
+  /* border-left: 1px solid var(--dark-color-font); */
+  margin-right: 5px;
+}
+
+.language-select ul {
+  margin: auto;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.language-select li {
+  /* margin-top: 48px; */
+
+  display: flex;
+  /* Ustawia elementy wewnątrz listy poziomo */
+}
+
+
+.language-select li a {
+  display: block;
+  color: var(--light-color-font);
+  padding: 20px 20px;
+  /* Zwiększenie paddingu dla większego obszaru podświetlenia */
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+  /* border-bottom: 2px solid transparent; */
+}
+
+.language-select a:hover {
+  border-bottom: 2px solid var(--dark-color-font);
+  /* Widoczne dolne obramowanie */
+}
+
+.vertical-line {
+  width: 1px;
+  height: 160px;
+  background-color: var(--dark-color-font);
+}
+
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* To ensure the dropdown appears below the menu item */
+  left: 0; /* Aligns dropdown with the left side of the menu item */
+  background-color: var(--light-color-background);
+  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
+  z-index: 1000;
+  min-width: 180px;
+  padding: 10px 0;
+  list-style: none;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+  width: 300px;
+}
+
+.dropdown-menu li a {
+  color: var(--dark-color-font);
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.navbar-list li  .dropdown-menu.active {
+  display: block;
+  border: none;
+}
+
+.dark-mode .dropdown-menu {
+  background-color: var(--dark-color-background);
+}
+
+@media (max-width: 1110px) {
+  .navbar {
+    height: 130px;
+  }
 
   .navbar-list {
     flex-direction: column;
     position: absolute;
-    top: 63px;
+    top: 260px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
     left: 0;
     width: 100%;
-    background-color: var(--light-color-background);
+    max-height: none; /* Upewnij się, że max-height nie ogranicza wysokości */
+    height: 100%; /* Ustawienie wysokości na auto */
     z-index: 1;
-    opacity: 0; /* Ukrywanie menu domyślnie */
-    visibility: hidden; /* Ukrywanie menu domyślnie */
-    padding: 0; /* Resetowanie paddingu */
+    opacity: 1;
+    visibility: hidden;
+    padding: 0;
     margin-top: 8px;
-    margin-left: 0px; /* Resetowanie marginesu */
-  }
-
-  .dark-mode .navbar-list {
-    background-color:  var(--dark-color-background);
   }
 
   .navbar-list li a {
-    color: var(--light-color-font);
-    display: block;
-    padding: 8px; /* Zwiększenie paddingu dla większego obszaru podświetlenia */
-    /* height: 1270px; */
+    color: var(--dark-color-font);
+    padding: 16px; /* Upewnienie się, że padding jest wystarczający */
     text-decoration: none;
-    margin: 8px;
+    margin: 0;
+    width: 100%; /* Ustawienie szerokości na 100%, by elementy zajmowały całą szerokość */
   }
 
   .navbar-list li a:hover {
-    padding: 8px 8px;
-    background-color: #b1afaf; /* Zwiększony obszar podświetlenia */
+    background-color: #b1afaf;
     color: #000;
-    margin: 8px;
   }
 
   .navbar-list.active {
-    /* height: 60px; */
-    width: 97.5%;
     opacity: 1;
+    /* background-color: var(--dark-color-background); */
     visibility: visible;
+    height: auto; /* Ustawienie wysokości automatycznej, by menu się rozwijało w zależności od liczby elementów */
   }
-
+  .navbar-list li a {
+    background-color: var(--dark-color-background);
+    /* border-bottom: 1px solid var(--dark-color-font); */
+  }
   .navbar-toggle {
     display: flex;
+    right: 50px;
+  }
+  .language-select, .vertical-line{
+    visibility: hidden;
   }
 }
 
-@media (min-width: 769px) {
+
+
+
+@media (min-width: 1111px) {
   .navbar-list {
     max-height: none;
     opacity: 1;

@@ -1,23 +1,43 @@
 <template>
-  <div class="hero-section">
-    <div class="overlay">
-      <div class="hero-content">
-        <p>OBSŁUG</p>
-        <p>EVENTÓW</p>
-        <p>BRAND EXPERIENCE </p>
-        <router-link to="/sprawdz" class="hero-button">SPRAWDŹ</router-link>
-      </div>
-    </div>
+  <div>
+    <ImageCarousel :initialSlideIndex="slideIndex" />
   </div>
 </template>
 
 <script>
+import ImageCarousel from './ImageCarousel.vue';
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+  components: {
+    ImageCarousel
+  },
+  props: {},
+  data() {
+    return {
+      slideIndex: null,
+    };
+  },
+  created() {
+    // Pobieranie parametru slideIndex z routera
+    console.log("dupa");
+    console.log(this.$route.params);
+    this.slideIndex = this.$route.params.slideIndex;
+  }
 };
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+}
+</style>
+<!-- <style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -52,7 +72,7 @@ body, html {
 .hero-content {
   text-align: left;
   position: absolute;
-  right: 10%;
+  right: 20%;
 }
 
 .hero-content p {
@@ -81,4 +101,4 @@ body, html {
   color: var(--dark-color-font);
   border-color:var(--dark-color-font);
 }
-</style>
+</style> -->

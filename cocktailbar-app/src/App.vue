@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <router-view  v-slot="{ Component}" >
+    <router-view  v-slot="{ Component}" :some-prop="someValue" >
       <component :is="Component" />
     </router-view>
   </div>
