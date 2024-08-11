@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'dark-mode': isDarkMode}" class="carousel" @wheel="handleScroll">
+  <div :class="{ 'dark-mode': isDarkMode }" class="carousel" @wheel="handleScroll">
     <div class="carousel-inner" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
       <div class="carousel-item" v-for="(slide, index) in slides" :key="index">
         <img :src="slide.image" :alt="slide.alt">
@@ -20,7 +20,8 @@
       </div>
     </div>
     <div class="carousel-indicators">
-      <span v-for="(slide, index) in slides" :key="index" :class="{ active: index === currentSlide }" @click="goToSlide(index)"></span>
+      <span v-for="(slide, index) in slides" :key="index" :class="{ active: index === currentSlide }"
+        @click="goToSlide(index)"></span>
     </div>
   </div>
 </template>
@@ -45,7 +46,8 @@ export default {
         // Dodaj więcej slajdów według potrzeb
       ]
     }
-  },mounted() {
+  },
+  mounted() {
     // Pobranie indeksu slajdu z parametrów trasy
     const index = parseInt(this.$route.params.slideIndex, 10);
     if (!isNaN(index)) {
@@ -97,7 +99,6 @@ export default {
 </script>
 
 <style scoped>
-
 .carousel {
   position: relative;
   width: 100%;
@@ -161,6 +162,7 @@ export default {
   cursor: pointer;
   pointer-events: all;
 }
+
 .dark-mode .carousel-control {
   color: var(--dark-color-background);
 }
@@ -252,6 +254,4 @@ export default {
   color: var(--dark-color-background);
   border: 2px solid var(--dark-color-background);
 }
-
-
 </style>

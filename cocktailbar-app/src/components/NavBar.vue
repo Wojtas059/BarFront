@@ -47,7 +47,7 @@ export default {
       menuItems: [
         { name: 'Home', link: '/' },
         { name: 'O Nas', link: '/about' },
-        { name: 'Oferta', link: '/offer/event', subItems: [
+        { name: 'Oferta \u25BC', link: '/offer/event', subItems: [
           { name: 'Oferta wypożyczalni', link: '/offer/rent' },
           { name: 'Oferta eventowa', link: '/offer/event' }
         ]},
