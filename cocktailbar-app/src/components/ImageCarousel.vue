@@ -42,7 +42,7 @@ export default {
         { image: require('@/assets/images/home/Home-Page-1.png'), alt: 'Image 1', title: ['OBSŁUGA', 'EVENTÓW', 'BRAND EXPERIENCE'], buttonText: 'SPRAWDŹ', darkMode: false },
         { image: require('@/assets/images/home/Home-Page-2.png'), alt: 'Image 3', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: true },
         { image: require('@/assets/images/home/Home-Page-3.png'), alt: 'Image 1', title: ['OBSŁUGA przyjęć', 'i imprez', 'okolicznościowych'], buttonText: 'SPRAWDŹ', darkMode: false },
-        { image: require('@/assets/images/home/Glenfiddich-77.jpg'), alt: 'Image 4', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: false },
+        { image: require('@/assets/images/home/IMG_7653.jpg'), alt: 'Image 4', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: true },
         // Dodaj więcej slajdów według potrzeb
       ]
     }
@@ -225,12 +225,15 @@ export default {
 }
 
 .hero-button {
+  letter-spacing: 3px;
   text-align: center;
-  font-size: 30px;
+  font-size: 18px;
   margin-top: 30px;
-  width: 130%;
-  height: 40px;
-  display: inline-block;
+  width: 160px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--dark-color-font);
   color: var(--dark-color-background);
   padding: 10px 20px;
@@ -245,14 +248,37 @@ export default {
 }
 
 .hero-button:hover {
-  background: var(--dark-color-background);
+  /* background: var(--dark-color-background); */
+  background-color: rgba(54, 52, 52, 0.5);
   color: var(--dark-color-font);
+  font-weight: bold;
+  /* color: var(--dark-color-background); */
   border: 2px solid var(--dark-color-font);
 }
 
 .dark-mode .hero-button:hover {
-  background: var(--dark-color-font);
+  /* background: var(--dark-color-font); */
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.621);
   color: var(--dark-color-background);
   border: 2px solid var(--dark-color-background);
+}
+
+@media (max-width: 1300px){
+  .caption p{
+    font-size: 12px;
+  }
+  .hero-button {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 822px) {
+  .caption p{
+    font-size: 11px;
+  }
+  .hero-button {
+    font-size: 14px;
+  }
 }
 </style>

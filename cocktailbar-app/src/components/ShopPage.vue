@@ -108,8 +108,18 @@ body, html {
   padding-left: 30px;
   padding-right: 30px;
 }
+.shop .view-toggle {
+  width: 80%;
+  position: relative;
+  left: 70%;
+}
 .shop .view-toggle button {
+  width: 32px;
+  height: 32px;
   border: 1px solid transparent;
+  background: none; /* Usuwa tło przycisku */
+
+  padding: 0;
 }
 
 .shop .view-toggle img {
@@ -121,7 +131,13 @@ body, html {
 .shop .view-toggle button:hover {
   border: 1px solid var(--dark-color-background);
   background-color: var(--dark-color-background);
-  color: var(--dark-color-font);
+  /* color: var(--dark-color-font); */
+}
+.shop .view-toggle  button:hover  img {
+  /* border: 1px solid var(--dark-color-background);
+  background-color: var(--dark-color-background); */
+  /* color: var(--dark-color-font); */
+  filter: invert(94%) sepia(5%) saturate(402%) hue-rotate(317deg) brightness(105%) contrast(85%);
 }
 
 .view-toggle {

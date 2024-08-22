@@ -253,5 +253,21 @@ export default {
   border: 2px solid var(--dark-color-background);
 }
 
+@media (max-width: 1300px){
+  .caption p{
+    font-size: 12px;
+  }
+  .hero-button {
+    font-size: 15px;
+  }
+}
 
+@media (max-width: 822px) {
+  .caption p{
+    font-size: 11px;
+  }
+  .hero-button {
+    font-size: 14px;
+  }
+}
 </style>
