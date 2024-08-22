@@ -1,7 +1,8 @@
 <template>
   <div>
-    <NavBar />
-    <router-view  v-slot="{ Component}" :some-prop="someValue" >
+    <NavBar v-if="$route.path !== '/shop'" />
+    <NavBarShop v-if="$route.path == '/shop'" />
+    <router-view v-slot="{ Component}" :some-prop="someValue" >
       <component :is="Component" />
     </router-view>
   </div>
@@ -9,19 +10,20 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
+import NavBarShop from './components/NavBarShop.vue';
+import ShopPage from './components/ShopPage.vue';
 
 export default {
   components: {
     NavBar,
+    NavBarShop,
+    ShopPage
   },
   data() {
     return {
       isDarkMode: true
     };
-  },
-  methods: {
-
-  },
+  }
 
 };
 </script>

@@ -28,15 +28,16 @@ export default {
                 { image: require('@/assets/images/portfolio/Alexey_Pilipenko_0395.jpg'), alt: 'Image 1' },
                 // Dodaj więcej slajdów według potrzeb
             ],
+
             logos: [
-                {image: require('@/assets/images/portfolio/glenfiddich.png'), alt: "glenfiddich"},
-                {image: require('@/assets/images/portfolio/Vogue-logo.png'), alt: "Vouge"},
-                {image: require('@/assets/images/portfolio/logo-douglas.png'), alt: "Douglas"},
-                // {image: require(), alt: "Jaguar"},
-                // {image: require(), alt: "The balvenie"},
-                // {image: require(), alt: "Tous"},
-                // {image: require(), alt: "Sprandi"},
-                // {image: require(), alt: "Open'er Festival"},
+                {image: require('@/assets/images/portfolio/logo/vogue.png'), alt: "Vogue"},
+                {image: require('@/assets/images/portfolio/logo/tous.png'), alt: "Tous"},
+                {image: require('@/assets/images/portfolio/logo/sprandi.png'), alt: "Sprandi"},
+                {image: require('@/assets/images/portfolio/logo/Opener-logo.png'), alt: "Open'er Festival"},
+                {image: require('@/assets/images/portfolio/logo/jaguar.png'), alt: "Jaguar"},
+                {image: require('@/assets/images/portfolio/logo/glenfiddich.png'), alt: "glenfiddich"},
+                {image: require('@/assets/images/portfolio/logo/douglas.png'), alt: "Douglas"},
+                {image: require('@/assets/images/portfolio/logo/balvenie.png'), alt: "The balvenie"},
             ]
         }
     },
@@ -101,17 +102,19 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 20px; */
-  gap: 30px;
+  /* margin-bottom: 20px; */
+  /* margin-toheight: autop: 20px; */
+
 }
 
 .logos img {
-  max-height: 100px; /* Maksymalna wysokość logotypu */
-  max-width: 150px; /* Maksymalna szerokość logotypu */
-  object-fit: contain; /* Zachowuje proporcje logotypów */
+  max-width: 100%;
+  max-height: 50%; /* Maksymalna wysokość logotypu */
+   /* Maksymalna szerokość logotypu */
+  object-fit: contain;  /*Zachowuje proporcje logotypów */
   object-position: center;
   display: block;
-  filter: brightness(0) invert(1); /* Zmienia kolory na biały na ciemnym tle */
+  /* filter: brightness(0) invert(1); Zmienia kolory na biały na ciemnym tle */
 }
 
 .carousel-indicators p {

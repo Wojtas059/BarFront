@@ -5,6 +5,7 @@ import AboutPage from '../components/AboutPage.vue';
 import OfferEventPage from '../components/OfferEventPage.vue';
 import OfferRentPage from '../components/OfferRentPage.vue';
 import PortfolioPage from '../components/PortfolioPage.vue';
+import ShopPage from '@/components/ShopPage.vue';
 
 const routes = [
   { path: '/', name: 'HomePage', component: HomePage, props: true },
@@ -12,7 +13,8 @@ const routes = [
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/offer/event', name: 'EventPage', component: OfferEventPage },
   { path: '/offer/rent', name: 'RentPage', component: OfferRentPage },
-  { path: '/portfolio', name: 'PortfolioPage', component: PortfolioPage }
+  { path: '/portfolio', name: 'PortfolioPage', component: PortfolioPage },
+  { path: '/shop', name: 'ShoPage', component: ShopPage}
 ];
 
 const router = createRouter({

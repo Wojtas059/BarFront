@@ -39,10 +39,10 @@ export default {
     return {
       currentSlide: this.initialSlideIndex,
       slides: [
-        { image: require('@/assets/images/home/Alexey_Pilipenko 0153.jpg'), alt: 'Image 1', title: ['OBSŁUGA', 'EVENTÓW', 'BRAND EXPERIENCE'], buttonText: 'SPRAWDŹ', darkMode: true },
-        { image: require('@/assets/images/home/_T5A0568.jpg'), alt: 'Image 3', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: false },
-        { image: require('@/assets/images/home/IMG_7653.jpg'), alt: 'Image 1', title: ['OBSŁUGA przyjęć', 'i imprez', 'okolicznościowych'], buttonText: 'SPRAWDŹ', darkMode: true },
-        { image: require('@/assets/images/home/Glenfiddich-77.jpg'), alt: 'Image 3', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: false },
+        { image: require('@/assets/images/home/Home-Page-1.png'), alt: 'Image 1', title: ['OBSŁUGA', 'EVENTÓW', 'BRAND EXPERIENCE'], buttonText: 'SPRAWDŹ', darkMode: false },
+        { image: require('@/assets/images/home/Home-Page-2.png'), alt: 'Image 3', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: true },
+        { image: require('@/assets/images/home/Home-Page-3.png'), alt: 'Image 1', title: ['OBSŁUGA przyjęć', 'i imprez', 'okolicznościowych'], buttonText: 'SPRAWDŹ', darkMode: false },
+        { image: require('@/assets/images/home/Glenfiddich-77.jpg'), alt: 'Image 4', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: false },
         // Dodaj więcej slajdów według potrzeb
       ]
     }
@@ -119,8 +119,9 @@ export default {
 }
 
 .carousel-item img {
-  width: 100%;
-  height: 100%;
+  margin-top: 120px;
+  width: auto;
+  height: auto;
   object-fit: cover;
 }
 
