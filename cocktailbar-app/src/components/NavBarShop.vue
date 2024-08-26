@@ -1,4 +1,5 @@
 <template>
+  <div>
   <nav class="navbar" :class="{ 'dark-mode': isDarkMode }">
     <div class="navbar-logo">
       <router-link to="/">
@@ -6,13 +7,13 @@
       </router-link>
     </div>
 
-    <div class="navbar-toggle" @click="toggleMenu" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+    <!-- <div class="navbar-toggle" @click="toggleMenu" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </div> -->
     
-    <ul class="navbar-list" :class="{ active: isOpen || isHovered }" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+    <ul class="navbar-list" :class="{ active: isOpen || isHovered }">
       <!-- Przycisk z lupą -->
       <button class="search-button" @click="toggleSearch">
         <i class="pi pi-search"></i>
@@ -22,13 +23,7 @@
         <input type="text" placeholder="Szukaj..." />
       </li>
       <li v-for="(item, index) in menuItems" :key="index" @mouseover="handleSubmenuMouseOver(index)" @mouseleave="handleSubmenuMouseLeave">
-        <router-link :to="item.link" exact-active-class="active">{{ item.name }}</router-link>
-        <!-- Submenu -->
-        <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index }">
-          <li v-for="(subItem, subIndex) in item.subItems" :key="subIndex">
-            <router-link :to="subItem.link">{{ subItem.name }}</router-link>
-          </li>
-        </ul>
+        <router-link :to="item.link" exact-active-class="active"><img :src="item.icon" alt="Logo" /></router-link>
       </li>
     </ul>
     <div class="vertical-line"></div>
@@ -41,6 +36,24 @@
       </ul>
     </div>
   </nav>
+  <nav class="navbar-drugi" :class="{ 'dark-mode': isDarkMode }">
+    <div class="navbar-toggle" @click="toggleMenu" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+      <p>Kategoria</p>
+    </div>
+
+    <ul class="navbar-list" :class="{ active: isOpen || isHovered }" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+      <li v-for="(item, index) in menuCategory" :key="index" @mouseover="handleSubmenuMouseOver(index)" @mouseleave="handleSubmenuMouseLeave">
+        <router-link :to="item.link" exact-active-class="active">{{ item.name }}</router-link>
+        <!-- Submenu -->
+        <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index }">
+          <li v-for="(subItem, subIndex) in item.subItems" :key="subIndex">
+            <router-link :to="subItem.link">{{ subItem.name }}</router-link>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
 </template>
 
 <script>
@@ -56,13 +69,19 @@ export default {
       isDarkMode: true,
       isSearchOpen: false,  // Zmienna do zarządzania polem wyszukiwania
       menuItems: [
-        { name: 'Koszyk', link: '/cart' },
+        { name: 'Koszyk', link: '/cart', icon: require('@/assets/icons/shopping-cart.png') },
+      ],
+      menuCategory: [
+        { name: 'Szkło', link: '/' },
+        { name: 'Akcesoria Barmańskie', link: '/' },
+        { name: 'Sprzęt duży', link: '/' },
+        { name: 'Bary mobilne', link: '/' },
       ],
     };
   },
   computed: {
     logoSrc() {
-      return require('@/assets/logs/Cocktail-Service-logo-RGB-WHITE.png');
+      return require('@/assets/icons/Cocktail-Service-logo-RGB-WHITE.png');
     },
   },
   methods: {
@@ -96,7 +115,7 @@ export default {
 <style scoped>
 .navbar {
   letter-spacing: 3px;
-  font-size: 14px;
+  font-size: 12px;
   position: fixed;
   top: 0;
   left: 0;
@@ -108,7 +127,23 @@ export default {
   padding: 15px;
   background-color: var(--light-color-background);
   transition: background-color 0.3s ease, color 0.3s ease;
-  height: 175px;
+  height: 100px;
+}
+
+.navbar-drugi {
+  position: fixed;
+  font-size: 11px;
+  top: 131px; /* ustawia drugi pasek nawigacyjny tuż pod pierwszym */
+  left: 0;
+  width: 100%;
+  z-index: 999; /* ustaw niższy z-index, aby był pod pierwszym paskiem */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--dark-color-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  height: 80px; /* dostosuj wysokość drugiego paska w zależności od potrzeb */
 }
 
 .search-button {
@@ -159,9 +194,17 @@ export default {
 }
 
 .navbar-logo img {
-  height: 180px;
+  height: 120px;
   width: auto;
   max-width: 100%;
+}
+
+
+.navbar-list img {
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
+  filter: invert(94%) sepia(5%) saturate(402%) hue-rotate(317deg) brightness(105%) contrast(85%);
 }
 
 .dark-mode-logo img {
@@ -179,6 +222,11 @@ export default {
   margin-right: 25px;
   padding: 0;
 }
+
+.navbar-drugi .navbar-list {
+  justify-content: flex-start;
+}
+
 
 .navbar-list.active {
   max-height: 200px;
@@ -218,12 +266,12 @@ export default {
 
 .navbar-toggle {
   position: absolute;
-  right: 40px;
   display: none;
   flex-direction: column;
   cursor: pointer;
   background: none;
   border: none;
+  left: 20px;
 }
 
 .navbar-toggle span {
@@ -292,7 +340,8 @@ export default {
   color: var(--light-color-font);
   padding: 20px 20px;
   text-decoration: none;
-  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid transparent;
 }
 
 .language-select a:hover {
@@ -301,7 +350,7 @@ export default {
 
 .vertical-line {
   width: 1px;
-  height: 160px;
+  height: 130px;
   background-color: var(--dark-color-font);
 }
 
@@ -337,15 +386,25 @@ export default {
   background-color: var(--dark-color-background);
 }
 
-@media (max-width: 1110px) {
+@media (max-width: 700px) {
   .navbar {
-    height: 130px;
+    height: 80px;
   }
 
-  .navbar-list {
+  .navbar-drugi {
+    top: 111px;
+    height: 60px;
+  }
+  .navbar-logo img {
+    height: 90px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .navbar-drugi .navbar-list {
     flex-direction: column;
     position: absolute;
-    top: 260px;
+    top: 83px;
     left: 0;
     width: 100%;
     max-height: none;
@@ -355,9 +414,14 @@ export default {
     visibility: hidden;
     padding: 0;
     margin-top: 8px;
+    padding-bottom: 20px;
   }
 
-  .navbar-list li a {
+  .navbar-drugi .navbar-list ul {
+    padding-bottom: 4px;
+  }
+
+  .navbar-drugi .navbar-list li a {
     color: var(--dark-color-font);
     padding: 16px;
     text-decoration: none;
@@ -365,30 +429,33 @@ export default {
     width: 100%;
   }
 
-  .navbar-list li a:hover {
+  .navbar-drugi .navbar-list li a:hover {
     background-color: #b1afaf;
     color: #000;
   }
 
-  .navbar-list.active {
+  .navbar-drugi .navbar-list.active {
     opacity: 1;
     visibility: visible;
     height: auto;
   }
-  .navbar-list li a {
+  .navbar-drugi .navbar-list li a {
     background-color: var(--dark-color-background);
   }
+
   .navbar-toggle {
     display: flex;
     right: 50px;
   }
+
   .language-select, .vertical-line {
-    visibility: hidden;
+    /* visibility: hidden; */
+    height: 111px;
   }
 }
 
 @media (min-width: 1111px) {
-  .navbar-list {
+  .navbar-drugi .navbar-list {
     max-height: none;
     opacity: 1;
     visibility: visible;

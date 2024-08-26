@@ -51,7 +51,7 @@ export default {
           { name: 'Oferta wypożyczalni', link: '/offer/rent' },
           { name: 'Oferta eventowa', link: '/offer/event' }
         ]},
-        { name: 'Sklep', link: '/shop' },
+        { name: 'wypożyczalnia', link: '/rent' },
         { name: 'Portfolio', link: '/portfolio' },
         { name: 'Kontakt', link: '/contact' },
       ],
@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     logoSrc() {
-      return require('@/assets/logs/Cocktail-Service-logo-RGB-WHITE.png');
+      return require('@/assets/icons/Cocktail-Service-logo-RGB-WHITE.png');
     },
   },
   methods: {
@@ -283,8 +283,9 @@ export default {
   padding: 20px 20px;
   /* Zwiększenie paddingu dla większego obszaru podświetlenia */
   text-decoration: none;
-  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
-  /* border-bottom: 2px solid transparent; */
+  transition: color 0.3s ease;
+  /* border-bottom:  0.3s ease transparent; */
+  border-bottom: 2px solid transparent;
 }
 
 .language-select a:hover {
@@ -332,13 +333,13 @@ export default {
   background-color: var(--dark-color-background);
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .navbar {
     height: 40px;
   }
-}
+} */
 
-@media (max-width: 1110px) {
+@media (max-width: 1269px) {
   .navbar {
     height: 80px;
   }
@@ -399,7 +400,7 @@ export default {
 
 
 
-@media (min-width: 1111px) {
+@media (min-width: 1270px) {
   .navbar-list {
     max-height: none;
     opacity: 1;

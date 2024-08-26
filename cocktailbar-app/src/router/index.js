@@ -14,7 +14,7 @@ const routes = [
   { path: '/offer/event', name: 'EventPage', component: OfferEventPage },
   { path: '/offer/rent', name: 'RentPage', component: OfferRentPage },
   { path: '/portfolio', name: 'PortfolioPage', component: PortfolioPage },
-  { path: '/shop', name: 'ShoPage', component: ShopPage}
+  { path: '/rent', name: 'ShoPage', component: ShopPage}
 ];
 
 const router = createRouter({

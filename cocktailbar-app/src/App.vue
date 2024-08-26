@@ -1,7 +1,7 @@
 <template>
   <div>
-    <NavBar v-if="$route.path !== '/shop'" />
-    <NavBarShop v-if="$route.path == '/shop'" />
+    <NavBar v-if="$route.path !== '/rent'" />
+    <NavBarShop v-if="$route.path == '/rent'" />
     <router-view v-slot="{ Component}" :some-prop="someValue" >
       <component :is="Component" />
     </router-view>

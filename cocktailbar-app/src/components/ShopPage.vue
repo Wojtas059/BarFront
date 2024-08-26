@@ -2,8 +2,8 @@
   <div class="shop">
     <!-- Przycisk do przełączania widoku -->
     <div class="view-toggle" v-if="!isMobile">
-      <button @click="listView"><img src="@/assets/logs/list.png" /> </button>
-      <button @click="gridView"><img src="@/assets/logs/grid.png" /> </button>
+      <button @click="listView"><img src="@/assets/icons/list.png" /> </button>
+      <button @click="gridView"><img src="@/assets/icons/grid.png" /> </button>
     </div>
     
     <!-- Lista produktów -->
@@ -99,7 +99,7 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 250px;
+  padding-top: 290px;
   box-sizing: border-box;
   background-color: var(--dark-color-font);
   color: var(--dark-color-background);
@@ -109,9 +109,8 @@ body, html {
   padding-right: 30px;
 }
 .shop .view-toggle {
-  width: 80%;
   position: relative;
-  left: 70%;
+  left: 40%;
 }
 .shop .view-toggle button {
   width: 32px;
