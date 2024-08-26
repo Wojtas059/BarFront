@@ -321,15 +321,27 @@ export default {
   background-color: var(--dark-color-background);
 }
 
+@media (max-width: 700px) {
+  .navbar {
+    height: 40px;
+  }
+}
+
 @media (max-width: 1110px) {
   .navbar {
+    height: 100px;
+  }
+
+  .navbar-logo img {
     height: 130px;
+    width: auto;
+    max-width: 100%;
   }
 
   .navbar-list {
     flex-direction: column;
     position: absolute;
-    top: 260px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
+    top: 230px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
     left: 0;
     width: 100%;
     max-height: none; /* Upewnij się, że max-height nie ogranicza wysokości */
@@ -382,5 +394,6 @@ export default {
     opacity: 1;
     visibility: visible;
   }
+
 }
 </style>

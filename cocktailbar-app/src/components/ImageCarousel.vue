@@ -119,9 +119,8 @@ export default {
 }
 
 .carousel-item img {
-  margin-top: 120px;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
