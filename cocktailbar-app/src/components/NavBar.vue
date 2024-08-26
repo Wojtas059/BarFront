@@ -63,9 +63,9 @@ export default {
     },
   },
   methods: {
-    // toggleMenu() {
-    //   this.isOpen = !this.isOpen;
-    // },
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
+    },
     handleMouseOver() {
       clearTimeout(this.hoverTimeout);
       this.isOpen = true;
@@ -73,7 +73,7 @@ export default {
     handleMouseLeave() {
       this.hoverTimeout = setTimeout(() => {
         this.isOpen = false;
-      }, 300)
+      }, 300);
     },
     handleSubmenuMouseOver(index) {
       this.isSubmenuOpen = index;
@@ -81,12 +81,23 @@ export default {
     handleSubmenuMouseLeave() {
       this.isSubmenuOpen = null;
     },
+    handleClickOutside(event) {
+      if (this.isOpen && !this.$el.contains(event.target)) {
+        this.isOpen = false;
+      }
+    },
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
       document.body.classList.toggle('dark-mode', this.isDarkMode);
       localStorage.setItem('isDarkMode', this.isDarkMode);
     },
-  }
+  },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeUnmount() {  // Zmienione z beforeDestroy
+    document.removeEventListener('click', this.handleClickOutside);
+  },
 };
 </script>
 
@@ -329,7 +340,7 @@ export default {
 
 @media (max-width: 1110px) {
   .navbar {
-    height: 100px;
+    height: 80px;
   }
 
   .navbar-logo img {
@@ -341,7 +352,7 @@ export default {
   .navbar-list {
     flex-direction: column;
     position: absolute;
-    top: 230px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
+    top: 210px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
     left: 0;
     width: 100%;
     max-height: none; /* Upewnij się, że max-height nie ogranicza wysokości */
