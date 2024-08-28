@@ -1,9 +1,9 @@
 <template>
   <div>
-    <NavBar v-if="$route.path !== '/rent'" />
-    <NavBarShop v-if="$route.path == '/rent'" />
+    <NavBar v-if="$route.path !== '/rent' && $route.path !== '/price'" />
+    <NavBarShop @categorySelected="handleCategorySelected" v-if="$route.path == '/rent' || $route.path == '/price'" />
     <router-view v-slot="{ Component}" :some-prop="someValue" >
-      <component :is="Component" />
+      <component v-bind="{ selectedCategory }" :is="Component" />
     </router-view>
   </div>
 </template>
@@ -21,8 +21,15 @@ export default {
   },
   data() {
     return {
-      isDarkMode: true
+      isDarkMode: true,
+      selectedCategory: { name: 'Home', link: 'home', desc: 'SZKŁO UNIWERSAL - SZKŁO TRANSPORTOWANE JEST W KOSZACH W SYSTEMIE CAMBRO - WYMIARY KOSZA TO 50 × 50 CM. SZKŁO ZAMAWIANE JEST NA PEŁNE KOSZE, DLA KAŻDEGO RODZAJU MAMY PODANĄ ILOŚĆ ZNAJDUJĄCĄ SIĘ W JEDNYM KOSZU. NA ŻYCZENIE MOŻEMY WYPOŻYCZYĆ RÓWNIEŻ WÓZKI ORAZ POKRYWY DO PRZECHOWYWANIA SZKŁA, ZAPEWNIAJĄCE JEGO CZYSTOŚĆ' },
     };
+  },
+  methods: {
+    handleCategorySelected(category) {
+      console.log(category);
+      this.selectedCategory = category;
+    }
   }
 
 };
