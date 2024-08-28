@@ -11,15 +11,42 @@
           <th>Nazwa</th>
           <th>Ilość w Koszu</th>
           <th>Cena Szt./Doba</th>
+          <th>Stłuczki Braki</th>
           <th>Dodatek</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="index">
+        <tr class="category-row">
+          <td colspan="6">SZKŁO</td>
+        </tr>
+        <tr v-for="(item, index) in glassItems" :key="index">
           <td>{{ index + 1 }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.quantity }}</td>
           <td>{{ item.pricePerDay }}</td>
+          <td>{{ item.breakage }}</td>
+          <td>{{ item.addon }}</td>
+        </tr>
+        <tr class="category-row">
+          <td colspan="6">Akcesoria Barmańskie</td>
+        </tr>
+        <tr v-for="(item, index) in barwareItems" :key="index">
+          <td>{{ glassItems.length + index + 1 }}</td> <!-- Dodajemy długość poprzedniej kategorii, aby kontynuować numerację -->
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.pricePerDay }}</td>
+          <td>{{ item.breakage }}</td>
+          <td>{{ item.addon }}</td>
+        </tr>
+        <tr class="category-row">
+          <td colspan="6">Sprzęt duży</td>
+        </tr>
+        <tr v-for="(item, index) in largeEquipmentItems" :key="index">
+          <td>{{ glassItems.length + barwareItems.length + index + 1 }}</td> <!-- Dodajemy długość poprzednich kategorii -->
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.pricePerDay }}</td>
+          <td>{{ item.breakage }}</td>
           <td>{{ item.addon }}</td>
         </tr>
       </tbody>
@@ -31,40 +58,39 @@
 export default {
   data() {
     return {
-      items: [
-        // Szkło
-        { name: 'Short', quantity: 125, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Long', quantity: 230, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Coupette', quantity: 160, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Szampan', quantity: 360, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Wino', quantity: 250, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Copa Gin Tonic', quantity: 160, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Nick & Nora', quantity: 250, pricePerDay: '2 PLN', addon: '20 PLN' },
-        { name: 'Wódka', quantity: 490, pricePerDay: '1 PLN', addon: '15 PLN' },
-        { name: 'Szklanka Degustacyjna', quantity: 60, pricePerDay: '1.5 PLN', addon: '15 PLN' },
-        { name: 'Kieliszek Degustacyjny', quantity: 490, pricePerDay: '1 PLN', addon: '15 PLN' },
-        // Akcesoria Barmańskie
-        { name: 'Cooler do wina', quantity: '-', pricePerDay: '10 PLN', addon: '100 PLN' },
-        { name: 'Misa do szampana', quantity: '-', pricePerDay: '50 PLN', addon: '500 PLN' },
-        { name: 'Smoking Gun Hendi', quantity: '-', pricePerDay: '50 PLN', addon: '400 PLN' },
-        { name: 'Stłuczki Braki Drewienka', quantity: '100 g', pricePerDay: '2 PLN', addon: '-' },
-        { name: 'Gaz', quantity: '-', pricePerDay: '15 PLN', addon: '-' },
-        { name: 'Palnik Hendi', quantity: '-', pricePerDay: '20 PLN', addon: '150 PLN' },
-        { name: 'Taca Duża', quantity: '-', pricePerDay: '2 PLN', addon: '40 PLN' },
-        { name: 'Taca Średnia', quantity: '-', pricePerDay: '2 PLN', addon: '20 PLN' },
-        { name: 'Stół Verlo Cateringowy', quantity: '-', pricePerDay: '50 PLN', addon: '50 PLN' },
-        { name: 'Pokrowiec na Stół Verlo', quantity: '-', pricePerDay: '50 PLN', addon: '-' },
-        { name: 'Granitator Carpigiani', quantity: '-', pricePerDay: '990 PLN', addon: 'Cena Rynkowa' },
-        { name: 'Stolik Verlo Koktajlowy', quantity: '-', pricePerDay: '30 PLN', addon: '-' },
-        { name: 'Pojemnik na Lód', quantity: '-', pricePerDay: '-', addon: 'Cena Rynkowa' },
-        { name: 'Dyspenser do Puree', quantity: '-', pricePerDay: '-', addon: 'Cena Rynkowa' },
-        { name: 'Podajnik do Serwetek', quantity: '-', pricePerDay: '-', addon: 'Cena Rynkowa' },
-        { name: 'Komplet Sprzętu Barmańskiego', quantity: '-', pricePerDay: '-', addon: 'Cena Rynkowa' },
-        { name: 'Sifon Kaiser Inox', quantity: '-', pricePerDay: '25 PLN', addon: 'Cena Rynkowa' },
-        { name: 'Nalewak do Butelek', quantity: '-', pricePerDay: '-', addon: 'Cena Rynkowa' },
-        // Sprzęt Duży
-        { name: 'Stół Verlo Cateringowy', quantity: '-', pricePerDay: '50 PLN', addon: '50 PLN' },
-        { name: 'Pokrowiec na Stół Verlo', quantity: '-', pricePerDay: '50 PLN', addon: '3 PLN' },
+      glassItems: [
+        { name: 'Short', quantity: 25, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Long', quantity: 30, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Coupette', quantity: 16, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Szampan', quantity: 36, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Wino', quantity: 25, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Copa Gin Tonic', quantity: 16, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Nick & Nora', quantity: 25, pricePerDay: '2 PLN', breakage: '20 PLN', addon: '-' },
+        { name: 'Wódka', quantity: 49, pricePerDay: '1 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Szklanka Degustacyjna', quantity: 6, pricePerDay: '1.5 PLN', breakage: '15 PLN', addon: '-' },
+        { name: 'Kieliszek Degustacyjny', quantity: 49, pricePerDay: '1 PLN', breakage: '15 PLN', addon: '-' },
+      ],
+      barwareItems: [
+        { name: 'Cooler do wina', quantity: '-', pricePerDay: '10 PLN', breakage: '-', addon: '100 PLN' },
+        { name: 'Misa do szampana', quantity: '-', pricePerDay: '50 PLN', breakage: '-', addon: '500 PLN' },
+        { name: 'Smoking Gun Hendi', quantity: '-', pricePerDay: '50 PLN', breakage: '-', addon: '400 PLN' },
+        { name: 'Stłuczki Braki Drewienka', quantity: '100 g', pricePerDay: '2 PLN', breakage: '-', addon: '-' },
+        { name: 'Gaz', quantity: '-', pricePerDay: '15 PLN', breakage: '-', addon: '-' },
+        { name: 'Palnik Hendi', quantity: '-', pricePerDay: '20 PLN', breakage: '-', addon: '150 PLN' },
+        { name: 'Taca Duża', quantity: '-', pricePerDay: '2 PLN', breakage: '-', addon: '40 PLN' },
+        { name: 'Taca Średnia', quantity: '-', pricePerDay: '2 PLN', breakage: '-', addon: '20 PLN' },
+      ],
+      largeEquipmentItems: [
+        { name: 'Stół Verlo Cateringowy', quantity: '-', pricePerDay: '50 PLN', breakage: '-', addon: '50 PLN' },
+        { name: 'Pokrowiec na Stół Verlo', quantity: '-', pricePerDay: '50 PLN', breakage: '-', addon: '-' },
+        { name: 'Granitator Carpigiani', quantity: '-', pricePerDay: '990 PLN', breakage: '-', addon: 'Cena Rynkowa' },
+        { name: 'Stolik Verlo Koktajlowy', quantity: '-', pricePerDay: '30 PLN', breakage: '-', addon: '-' },
+        { name: 'Pojemnik na Lód', quantity: '-', pricePerDay: '-', breakage: '-', addon: 'Cena Rynkowa' },
+        { name: 'Dyspenser do Puree', quantity: '-', pricePerDay: '-', breakage: '-', addon: 'Cena Rynkowa' },
+        { name: 'Podajnik do Serwetek', quantity: '-', pricePerDay: '-', breakage: '-', addon: 'Cena Rynkowa' },
+        { name: 'Komplet Sprzętu Barmańskiego', quantity: '-', pricePerDay: '-', breakage: '-', addon: 'Cena Rynkowa' },
+        { name: 'Sifon Kaiser Inox', quantity: '-', pricePerDay: '25 PLN', breakage: '-', addon: 'Cena Rynkowa' },
+        { name: 'Nalewak do Butelek', quantity: '-', pricePerDay: '-', breakage: '-', addon: 'Cena Rynkowa' },
       ],
     };
   },
@@ -133,7 +159,9 @@ table {
   border-collapse: collapse;
   margin-bottom: 20px;
 }
-
+thead {
+  color: #5f2525;
+}
 th,
 td {
   padding: 10px;
@@ -149,6 +177,27 @@ td {
   background-color: #f9f9f9;
 } */
 /* Dla urządzeń mobilnych wymuś widok listy */
+
+
+@media (min-width: 599px) and (max-width: 721px) {
+  .shop {
+    padding-top: 200px;
+  }
+  .shop .header {
+    margin: 10px 10px 0 10px;
+    width: 100%;
+  }
+  table {
+    font-size: 11px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+
+}
+
 @media (max-width: 598px) {
   .shop {
     padding-top: 200px;
