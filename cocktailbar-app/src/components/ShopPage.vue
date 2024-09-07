@@ -17,7 +17,7 @@
         <div class="product-details">
           <p class="name-prod">{{ product.name }}</p>
           <p class="price">{{ product.price }}</p>
-          <button class="product-button">SPRAWDŹ</button>
+          <router-link :to="`/rent/product/${index}`" class="product-button">SPRAWDŹ</router-link>
         </div>
       </div>
     </div>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'ShopPage',
   props: {
@@ -44,6 +46,36 @@ export default {
       isListView: false, // Zmienna do zarządzania widokiem listy lub siatki
       isMobile: false,   // Zmienna do wykrywania urządzenia mobilnego
       products: [
+        {
+          name: 'TACA',
+          price: '1.5 PLN / DOBA \n netto',
+          image: require('@/assets/shop/home_2.png'),
+        },
+        {
+          name: 'TACA',
+          price: '1.5 PLN / DOBA  \n netto',
+          image: require('@/assets/shop/home_2.png'),
+        },
+        {
+          name: 'TACA',
+          price: '1.5 PLN / DOBA  \n netto',
+          image: require('@/assets/shop/home_2.png'),
+        },
+        {
+          name: 'TACA',
+          price: '1.5 PLN / DOBA \n netto',
+          image: require('@/assets/shop/home_2.png'),
+        },
+        {
+          name: 'TACA',
+          price: '1.5 PLN / DOBA  \n netto',
+          image: require('@/assets/shop/home_2.png'),
+        },
+        {
+          name: 'TACA',
+          price: '1.5 PLN / DOBA  \n netto',
+          image: require('@/assets/shop/home_2.png'),
+        },
         {
           name: 'TACA',
           price: '1.5 PLN / DOBA \n netto',
@@ -117,6 +149,7 @@ html {
 .shop {
   display: flex;
   flex-direction: column;
+  flex: 1;
   justify-content: center;
   align-items: center;
   padding-top: 290px;
@@ -124,10 +157,10 @@ html {
   background-color: var(--dark-color-font);
   color: var(--dark-color-background);
   width: 100%;
-  /* Ustawienie szerokości na 100% */
-  height: 100%;
+  min-height: calc(100vh - 70px); /* Zapewnia, że .shop ma co najmniej pełną wysokość okna minus wysokość stopki */
   padding-left: 30px;
   padding-right: 30px;
+  padding-bottom: 200px; /* Upewnij się, że nie zakryje zawartości */
 }
 
 .shop .view-toggle {

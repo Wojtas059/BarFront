@@ -1,49 +1,63 @@
 <template>
   <div>
-    <NavBar v-if="$route.path !== '/rent' && $route.path !== '/price'" />
-    <NavBarShop @categorySelected="handleCategorySelected" v-if="$route.path == '/rent' || $route.path == '/price'" />
-    <router-view v-slot="{ Component}" :some-prop="someValue" >
-      <component v-bind="{ selectedCategory }" :is="Component" />
-    </router-view>
+    <!-- Główna nawigacja wyświetlana, gdy stopka nie jest wyświetlana -->
+    <NavBar v-if="notShouldShowFooter" />
+    
+    <!-- Nawigacja sklepu wyświetlana, gdy stopka jest wyświetlana -->
+    <NavBarShop @categorySelected="handleCategorySelected" v-if="shouldShowFooter" />
+
+    <div class="content">
+      <router-view v-slot="{ Component }" :some-prop="someValue">
+        <component v-bind="{ selectedCategory }" :is="Component" />
+      </router-view>
+    </div>
+
+    <!-- Stopka wyświetlana tylko na wybranych stronach -->
+    <AppFooter v-if="shouldShowFooter" />
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+import NavBar from './components/NavBar.vue';
 import NavBarShop from './components/NavBarShop.vue';
-import ShopPage from './components/ShopPage.vue';
+import AppFooter from './components/FootBar.vue';
 
 export default {
   components: {
     NavBar,
     NavBarShop,
-    ShopPage
+    AppFooter
   },
   data() {
     return {
-      isDarkMode: true,
-      selectedCategory: { name: 'Home', link: 'home', desc: 'SZKŁO UNIWERSAL - SZKŁO TRANSPORTOWANE JEST W KOSZACH W SYSTEMIE CAMBRO - WYMIARY KOSZA TO 50 × 50 CM. SZKŁO ZAMAWIANE JEST NA PEŁNE KOSZE, DLA KAŻDEGO RODZAJU MAMY PODANĄ ILOŚĆ ZNAJDUJĄCĄ SIĘ W JEDNYM KOSZU. NA ŻYCZENIE MOŻEMY WYPOŻYCZYĆ RÓWNIEŻ WÓZKI ORAZ POKRYWY DO PRZECHOWYWANIA SZKŁA, ZAPEWNIAJĄCE JEGO CZYSTOŚĆ' },
+      selectedCategory: { name: 'Home', link: 'home', desc: 'SZKŁO UNIWERSAL...' },
     };
+  },
+  computed: {
+    shouldShowFooter() {
+      // Stopka wyświetla się, gdy ścieżka zaczyna się od '/rent' lub jest równa '/price'
+      return this.$route.path.startsWith('/rent') || this.$route.path === '/price';
+    },
+    notShouldShowFooter() {
+      // Główna nawigacja wyświetla się, gdy ścieżka nie zaczyna się od '/rent' i nie jest równa '/price'
+      return !this.shouldShowFooter;
+    }
   },
   methods: {
     handleCategorySelected(category) {
-      console.log(category);
       this.selectedCategory = category;
     }
   }
-
 };
 </script>
 
 <style>
-  /* .dark-mode { */
-    /* background-color: rgb(25, 37, 53); */
-    /* background-image: url('@/assets/kieliszki.png');
-    color: var(--dark-color-font)
-  } */
+body {
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-  body {
-    margin: 0;
-    transition: background-color 0.3s, color 0.3s;
-  }
+.content {
+  flex: 1;
+}
 </style>

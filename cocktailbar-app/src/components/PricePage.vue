@@ -127,6 +127,8 @@ html {
   height: 100%;
   padding-left: 30px;
   padding-right: 30px;
+
+  padding-bottom: 300px;
 }
 
 .shop .header {
@@ -160,7 +162,7 @@ table {
   margin-bottom: 20px;
 }
 thead {
-  color: #5f2525;
+  color: var(--dark-color-red);
 }
 th,
 td {

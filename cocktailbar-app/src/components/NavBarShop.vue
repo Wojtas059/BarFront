@@ -57,7 +57,7 @@
         @mouseleave="handleMouseLeave">
         <li v-for="(item, index) in menuCategory" :key="index" @mouseover="handleSubmenuMouseOver(index)"
           @mouseleave="handleSubmenuMouseLeave">
-          <button @click="selectCategory(item)" :class="{ 'active': selectedCategory === item.name }"
+          <button @click="selectCategory(item)" :class="{ 'active': selectedCategory === item.name  && isActive('/rent') }"
             exact-active-class="active">
             {{ item.name }}
           </button>
@@ -105,6 +105,9 @@ export default {
     },
   },
   methods: {
+    isActive(link) {
+      return this.$route.path === link;
+    },
     toggleSearch() {
       this.isSearchOpen = !this.isSearchOpen;
     },
@@ -130,8 +133,12 @@ export default {
     },
     selectCategory(category) {
       // console.log(category);
+
       this.selectedCategory = category.name;
       this.$emit('categorySelected', category);
+      if (this.$route.path != '/rent') {
+        this.$router.push('/rent');
+      } 
       // this.$emit('update:selectedCategory', category);
     },
   }
@@ -159,7 +166,7 @@ export default {
 .navbar-drugi {
   position: fixed;
   font-size: 11px;
-  top: 131px;
+  top: 129px;
   /* ustawia drugi pasek nawigacyjny tuż pod pierwszym */
   left: 0;
   width: 100%;
@@ -172,6 +179,7 @@ export default {
   background-color: var(--dark-color-background);
   transition: background-color 0.3s ease, color 0.3s ease;
   height: 80px;
+  border-top: 2px solid var(--dark-color-font);
   /* dostosuj wysokość drugiego paska w zależności od potrzeb */
 }
 
@@ -337,6 +345,7 @@ export default {
 
 .navbar button {
   margin-right: 50px;
+  cursor: pointer;
 }
 
 .dark-mode-toggle {
@@ -406,6 +415,7 @@ export default {
 .dropdown-menu {
   display: none;
   position: absolute;
+  cursor: pointer;
   top: 100%;
   left: 0;
   background-color: var(--light-color-background);

@@ -7,6 +7,7 @@ import OfferRentPage from '../components/OfferRentPage.vue';
 import PortfolioPage from '../components/PortfolioPage.vue';
 import ShopPage from '@/components/ShopPage.vue';
 import PricePage from '@/components/PricePage.vue';
+import ProductDetailPage from '@/components/ProductDetailPage.vue';
 
 const routes = [
   { path: '/', name: 'HomePage', component: HomePage, props: true },
@@ -17,6 +18,7 @@ const routes = [
   { path: '/portfolio', name: 'PortfolioPage', component: PortfolioPage },
   { path: '/rent', name: 'ShoPage', component: ShopPage, },
   { path: '/price', name: 'PricePage', component: PricePage, },
+  { path: '/rent/product/:id', name: 'ProductDetailPage', component: ProductDetailPage, props: true },
 ];
 
 const router = createRouter({
