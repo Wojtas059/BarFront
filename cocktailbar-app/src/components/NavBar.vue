@@ -12,11 +12,12 @@
       <span></span>
     </div>
 
+    
     <ul class="navbar-list" :class="{ active: isOpen || isHovered }" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
       <li v-for="(item, index) in menuItems" :key="index" @mouseover="handleSubmenuMouseOver(index)" @mouseleave="handleSubmenuMouseLeave">
         <router-link :to="item.link" exact-active-class="active">{{ item.name }}</router-link>
         <!-- Submenu -->
-        <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index }">
+        <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index || isMobileMenu }">
           <li v-for="(subItem, subIndex) in item.subItems" :key="subIndex">
             <router-link :to="subItem.link">{{ subItem.name }}</router-link>
           </li>
@@ -44,6 +45,7 @@ export default {
       isSubmenuOpen: null,
       hoverTimeout: null,
       isDarkMode: true,
+      isMobile: window.innerWidth <= 1269,
       menuItems: [
         { name: 'Home', link: '/' },
         { name: 'O Nas', link: '/about' },
@@ -86,6 +88,9 @@ export default {
         this.isOpen = false;
       }
     },
+    checkIsMobile() {
+      this.isMobile = window.innerWidth <= 1269;
+    },
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
       document.body.classList.toggle('dark-mode', this.isDarkMode);
@@ -93,6 +98,8 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener('resize', this.checkIsMobile);
+    this.checkIsMobile();
     document.addEventListener('click', this.handleClickOutside);
   },
   beforeUnmount() {  // Zmienione z beforeDestroy
@@ -353,7 +360,7 @@ export default {
   .navbar-list {
     flex-direction: column;
     position: absolute;
-    top: 210px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
+    top: 340px; /* Zmiana na 130px, by menu było pod paskiem nawigacyjnym */
     left: 0;
     width: 100%;
     max-height: none; /* Upewnij się, że max-height nie ogranicza wysokości */
@@ -395,8 +402,30 @@ export default {
   .language-select, .vertical-line{
     visibility: hidden;
   }
-}
 
+
+  .navbar-list .dropdown-menu {
+    display: block;
+    position: static;
+    background-color: var(--dark-color-background);
+    padding: 0;
+    border: none;
+  }
+
+  .dropdown-menu li {
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .dropdown-menu li a {
+    padding-left: 20px;
+    background-color: var(--dark-color-background);
+  }
+
+  .navbar-list li .dropdown-menu.active {
+    display: block;
+  }
+}
 
 
 
@@ -405,7 +434,16 @@ export default {
     max-height: none;
     opacity: 1;
     visibility: visible;
+  } 
+  .navbar-list .dropdown-menu {
+    display: none;
   }
 
+  .navbar-list li .dropdown-menu.active {
+    display: block;
+    position: absolute;
+    top: 100%; /* Wyświetla submenu poniżej */
+    left: 0;
+  }
 }
 </style>

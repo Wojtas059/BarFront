@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      selectedCategory: { name: 'Home', link: 'home', desc: 'SZKŁO UNIWERSAL...' },
+      selectedCategory: { name: 'Home', link: 'home', desc: 'ZKŁO UNIWERSAL - SZKŁO TRANSPORTOWANE JEST W KOSZACH W SYSTEMIE CAMBRO - WYMIARY KOSZA TO 50 × 50 CM. SZKŁO ZAMAWIANE JEST NA PEŁNE KOSZE, DLA KAŻDEGO RODZAJU MAMY PODANĄ ILOŚĆ ZNAJDUJĄCĄ SIĘ W JEDNYM KOSZU. NA ŻYCZENIE MOŻEMY WYPOŻYCZYĆ RÓWNIEŻ WÓZKI ORAZ POKRYWY DO PRZECHOWYWANIA SZKŁA, ZAPEWNIAJĄCE JEGO CZYSTOŚĆ.' },
     };
   },
   computed: {
