@@ -28,10 +28,13 @@
 
 
 <script>
+
+import { useSlideStore } from '../../store/slideStore';
+
 export default {
   data() {
     return {
-      currentSlide: 0,
+      currentSlide: this.initialSlideIndex,
       slides: [
         { image: require('@/assets/images/about/O-NAS-1.png'), alt: 'Image 1', 
         title: [  'WITAJ W ŚWIECIE COCKTAIL SERVICE, GDZIE KAŻDY DRINK TO DZIEŁO SZTUKI, A KAŻDE WYDARZENIE STAJE SIĘ NIEZAPOMNIANYM PRZEŻYCIEM!', 'JESTEŚMY PASJONATAMI DOSKONAŁEJ PREZENTACJI I JAKOŚCI SERWISU, SPECJALIZUJĄC SIĘ W DOSTARCZANIU TYLKO NAJLEPSZEGO SPRZĘTU GASTRONOMICZNEGO. \nOD MOBILNYCH BARÓW, PRZEZ ELEGANCKIE SZKŁO, PO WYDAJNE GRANITORYI ZMYWARKI - MAMY WSZYSTKO, CZEGO POTRZEBUJE NOWOCZESNY BAR, ABY ZROBIĆ WRAŻENIE I ZASPOKOIĆ GOŚCI SPRAGNIONYCH NAJINTENSYWNIEJSZYCH DOZNAŃ.'], buttonText: null, darkMode: false },
@@ -41,6 +44,12 @@ export default {
       ]
     }
   },
+  setup() {
+    const slideStore = useSlideStore();
+    return {
+      initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
+    };
+  },
   computed: {
     isDarkMode() {
       return this.slides[this.currentSlide].darkMode || false;
@@ -48,12 +57,22 @@ export default {
   },
   methods: {
     nextSlide() {
-      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      if  (this.currentSlide == 2) {
+        // Przejście na nową stronę
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(0);
+        this.$router.push('/offer/event'); // Zakładając, że używasz Vue Router
+      }
+      else {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      }
     },
     prevSlide() {
       if (this.currentSlide == 0) {
         // Przejście na nową stronę
-        this.$router.push({ name: 'HomePage', params: { slideIndex: 3 } }); // Zakładając, że używasz Vue Router
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(3);
+        this.$router.push('/'); // Zakładając, że używasz Vue Router
       } else {
         this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
       }

@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- Główna nawigacja wyświetlana, gdy stopka nie jest wyświetlana -->
-    <NavBar v-if="notShouldShowFooter" />
+    <NavBar v-if="notShouldShowNavBar" />
     
     <!-- Nawigacja sklepu wyświetlana, gdy stopka jest wyświetlana -->
-    <NavBarShop @categorySelected="handleCategorySelected" v-if="shouldShowFooter" />
+    <NavBarShop @categorySelected="handleCategorySelected" v-if="shouldShowNavBarShop" />
 
     <div class="content">
       <router-view v-slot="{ Component }" :some-prop="someValue">
@@ -36,11 +36,15 @@ export default {
   computed: {
     shouldShowFooter() {
       // Stopka wyświetla się, gdy ścieżka zaczyna się od '/rent' lub jest równa '/price'
+      return this.$route.path.startsWith('/rent') || this.$route.path === '/price' || this.$route.path === '/contact';
+    },
+    shouldShowNavBarShop() {
+      // Stopka wyświetla się, gdy ścieżka zaczyna się od '/rent' lub jest równa '/price'
       return this.$route.path.startsWith('/rent') || this.$route.path === '/price';
     },
-    notShouldShowFooter() {
+    notShouldShowNavBar() {
       // Główna nawigacja wyświetla się, gdy ścieżka nie zaczyna się od '/rent' i nie jest równa '/price'
-      return !this.shouldShowFooter;
+      return !this.shouldShowNavBarShop;
     }
   },
   methods: {

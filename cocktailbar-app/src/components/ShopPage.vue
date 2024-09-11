@@ -15,8 +15,10 @@
       <div v-for="(product, index) in products" :key="index" class="product-item">
         <img :src="product.image" :alt="product.name" class="product-image" />
         <div class="product-details">
-          <p class="name-prod">{{ product.name }}</p>
-          <p class="price">{{ product.price }}</p>
+          <div class="prod-info">
+            <p class="name-prod">{{ product.name }}</p>
+            <p class="price">{{ product.price }}</p>
+          </div>
           <router-link :to="`/rent/product/${index}`" class="product-button">SPRAWDŹ</router-link>
         </div>
       </div>
@@ -25,8 +27,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'ShopPage',
   props: {
@@ -253,6 +253,7 @@ html {
   /* Zawsze obraz po lewej, tekst po prawej */
   max-width: 100%;
   /* Pełna szerokość dla elementów w widoku listy */
+  border-top: 2px solid var(--dark-color-background);
   width: 100%;
 }
 
@@ -269,6 +270,18 @@ html {
   border-left: 2px solid var(--dark-color-background);
 }
 
+.product-list.list-view .product-details {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+
+.product-list.list-view .product-details .prod-info {
+  margin-right: 20px;
+  width: 70%;
+}
+
+
 .product-details p {
   margin-bottom: 14px;
 }
@@ -277,14 +290,25 @@ html {
   font-size: 18px;
 }
 
+.product-list.list-view .product-details .prod-info .name-prod {
+  font-size: 26px;
+}
+
 .price {
   font-size: 10px;
   white-space: pre-line;
+  color: var(--dark-color-red);
 }
+
+.product-list.list-view .product-details .prod-info .price {
+  font-size: 18px;
+}
+
+
 
 .product-button {
   text-align: center;
-  background-color: #000;
+  background-color: var(--dark-color-background);
   color: var(--dark-color-font);
   padding: 10px 20px;
   letter-spacing: 2px;
@@ -294,8 +318,16 @@ html {
   margin-top: 10px;
 }
 
+.product-list.list-view .product-button {
+  text-align: center;
+  width: 30%;
+  height: 10%;
+  
+}
+
+
 .product-button:hover {
-  background-color: #c2c0c0;
+  background-color: var(--dark-color-font);
   color: var(--dark-color-background);
   border: 1px solid var(--dark-color-background);
 }

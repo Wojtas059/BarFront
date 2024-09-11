@@ -71,23 +71,6 @@
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1220.713211224175!2d21.01808438636169!3d52.27195999396307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecdd476ff71c7%3A0x9085d9431460e4d5!2sCocktail%20Service%20sp.%20z%20o.o.!5e0!3m2!1spl!2spl!4v1717150660342!5m2!1spl!2spl" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
-      <!-- 
-      <div class="block">
-        <div class="column left-column">
-          <h4>Nasze biuro.</h4>
-          <p>
-            Cocktail Service sp. z o.o.<br />
-            Jagiellońska 82C bud. 109<br />
-            03-301, Warszawa
-          </p>
-        </div>
-        <div class="column right-column">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1220.713211224175!2d21.01808438636169!3d52.27195999396307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecdd476ff71c7%3A0x9085d9431460e4d5!2sCocktail%20Service%20sp.%20z%20o.o.!5e0!3m2!1spl!2spl!4v1717150660342!5m2!1spl!2spl" style="width: 100%; height: 400px;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-      </div>
-      <div class="footer">
-        <a href="mailto:BIURO@COCKTAILSERVICE.PL">BIURO@COCKTAILSERVICE.PL</a>
-      </div> -->
     </div>
   </div>
 </template>
@@ -142,8 +125,9 @@ export default {
   padding-top: 200px;
   box-sizing: border-box;
   background-color: var(--dark-color-font);
-  color: #333;
+  color: var(--dark-color-background);
   margin: 0 auto;
+  padding-bottom: 300px;
 }
 
 .main-column {

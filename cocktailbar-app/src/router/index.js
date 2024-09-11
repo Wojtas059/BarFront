@@ -10,9 +10,9 @@ import PricePage from '@/components/PricePage.vue';
 import ProductDetailPage from '@/components/ProductDetailPage.vue';
 
 const routes = [
-  { path: '/', name: 'HomePage', component: HomePage, props: true },
+  { path: '/', name: 'HomePage', component: HomePage },
   { path: '/contact', name: 'ContactPage', component: ContactPage },
-  { path: '/about', name: 'AboutPage', component: AboutPage },
+  { path: '/about', name: 'AboutPage', component: AboutPage, props: true  },
   { path: '/offer/event', name: 'EventPage', component: OfferEventPage },
   { path: '/offer/rent', name: 'RentPage', component: OfferRentPage },
   { path: '/portfolio', name: 'PortfolioPage', component: PortfolioPage },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ImageCarousel :initialSlideIndex="slideIndex" />
+    <ImageCarousel/>
   </div>
 </template>
 
@@ -11,17 +11,8 @@ export default {
   components: {
     ImageCarousel
   },
-  props: {},
   data() {
-    return {
-      slideIndex: null,
-    };
-  },
-  created() {
-    // Pobieranie parametru slideIndex z routera
-    console.log("dupa");
-    console.log(this.$route.params);
-    this.slideIndex = this.$route.params.slideIndex;
+    return {};
   }
 };
 </script>

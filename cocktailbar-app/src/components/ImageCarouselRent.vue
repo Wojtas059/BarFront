@@ -26,17 +26,27 @@
     </div>
   </div>
 </template>
+
 <script>
+
+import { useSlideStore } from '../../store/slideStore';
+
 export default {
   data() {
     return {
-      currentSlide: 0,
+      currentSlide: this.initialSlideIndex,
       slides: [
         { image: require('@/assets/images/offer/OFERTA-rent-1.png'), alt: 'Image 1', header: "WYNAJEM SPRZĘTU GASTRONOMICZNEGO I BARÓW MOBILNYCH", title: [  'CHĘTNIE UŻYCZYMY NASZEGO SPRZĘTU ORAZ PRZYWIEZIEMY NASZE BARYNA TWOJE WYDARZENIE. KIERUJEMY SIĘ NA RÓWNI ESTETYKĄ, JAK I FUNKCJONALNOŚCIĄ, PODCZAS BUDOWANIA NASZEJ OFERTY. JEST TO SPRZĘT NA KTÓRYM SAMI PRACUJEMY PODCZAS WŁASNYCH REALIZACJI. WYNAJMUJĄC OD NAS, KORZYSTASZ DODATKOWO Z NASZEGO DOŚWIADCZENIA I SPRAWDZONYCH W PRAKTYCE UDOGODNIEŃ PODCZAS REALIZACJI WŁASNEGO EVENTU.'], buttonText: "Zobacz Całą ofertę", darkMode: false },
         { image: require('@/assets/images/offer/OFERTA-rent-2.png'), header:  null , alt: 'Image 3', title: ['BARY MOBILNE, KTÓRE POSIADAMY, SĄ WYKONANE ZE STALI NIERDZEWNEJ PRZYSTOSOWANEJ DO KONTAKTU Z ŻYWNOŚCIĄ ORAZ WYSOKIEJ JAKOŚCI DREWNIANYCH PŁYT. KAŻDY Z NICH POSIADA WANNĘ NA LÓD ORAZ SPEEDRACK, A TAKŻE DOSTĘP DO WODY DZIĘKI SYSTEMOWI JACHTOWEMU. CECHUJĄ SIĘ KOMFORTEM UŻYTKOWANIA W KAŻDYM MIEJSCU, JEDYNE CZEGO POTRZEBUJĄ TO ZASILANIE 230V DO PODŚWIETLENIA I POMPY WODY, PRZY WIĘKSZEJ ILOŚCI STANOWISK POTRZEBNE JEST TYLKO JEDNO GNIAZDO.', 'SEGMENTY MOŻEMY ŁĄCZYĆ SZEREGOWO, W DOWOLNEJ KONFIGURACJI. OPRÓCZ STACJI ROBOCZYCH POSIADAMY SEGMENTY EKSPOZYCYJNE, MOGĄCE SŁUŻYĆ JAKO PRZEDŁUŻENIE BARU LUB STÓŁ Z DODATKOWĄ PÓŁKĄ Z TYŁU.' ], buttonText: "Zobacz całą ofertę", darkMode: false },
         // { image: require('@/assets/images/about/IMG_1309_4x5.jpg'), alt: 'Image 1', header: "OBSŁUGA PRZYJĘĆ I IMPREZ OKOLICZNOŚCIOWYCH" , title: ['ZAJMIEMY SIĘ TAKŻE OBSŁUGĄ TWOJEJ IMPREZY OKOLICZNOŚCIOWEJ. NASZE ZAPLECZE SPRZĘTOWE POZWALA NAM NA OBSŁUGĘ WIELU IMPREZ JEDNEGO DNIA, BEZ WZGLĘDU NA LICZBĘ ZAPROSZONYCH GOŚCI. ZAPEWNIAMY WYKWALIFIKOWANĄ OBSŁUGĘ ORAZ WSZYSTKIE NIEZBĘDNE RZECZY, DZIĘKI CZEMU NIE MUSISZ PRZEJMOWAĆ SIĘ NICZYM CO JEST ZWIĄZANE Z BAREM W DNIU PRZYJĘCIA.'], buttonText: 'Zobacz całą ofertę', darkMode: false },
       ]
     }
+  },
+  setup() {
+    const slideStore = useSlideStore();
+    return {
+      initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
+    };
   },
   computed: {
     isDarkMode() {
@@ -45,12 +55,21 @@ export default {
   },
   methods: {
     nextSlide() {
-      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      if (this.currentSlide == 1) {
+        // Przejście na nową stronę
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(0);
+        this.$router.push('/portfolio'); // Zakładając, że używasz Vue Router
+      } else {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      }
     },
     prevSlide() {
       if (this.currentSlide == 0) {
         // Przejście na nową stronę
-        this.$router.push({ name: 'HomePage', params: { slideIndex: 3 } }); // Zakładając, że używasz Vue Router
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(4);
+        this.$router.push('/offer/event'); // Zakładając, że używasz Vue Router
       } else {
         this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
       }

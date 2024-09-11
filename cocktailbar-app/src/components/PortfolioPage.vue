@@ -41,7 +41,33 @@ export default {
             ]
         }
     },
+    mounted() {
+        window.addEventListener('wheel', this.handleScroll);
+    },
+    beforeUnmount() {
+      window.removeEventListener('wheel', this.handleScroll);
+    },
+    methods: {
+        next() {
+          this.$router.push('/contact');
+        },
+        prev() {
+            if (this.currentSlide > 0) {
+                this.currentSlide--;
+            } else {
+                this.currentSlide = this.slides.length - 1; // wraca do ostatniego slajdu
+            }
+        },
+        handleScroll(event) {
+            if (event.deltaY > 0) {
+                this.next();
+            } else {
+                this.prev();
+            }
+        }
+    }
 };
+
 </script>
 
 <style scoped>

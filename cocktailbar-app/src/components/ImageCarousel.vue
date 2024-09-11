@@ -28,13 +28,10 @@
 
 
 <script>
+
+import { useSlideStore } from '../../store/slideStore';
+
 export default {
-  props: {
-    initialSlideIndex: {
-      type: Number,
-      default: 0
-    }
-  },
   data() {
     return {
       currentSlide: this.initialSlideIndex,
@@ -47,12 +44,14 @@ export default {
       ]
     }
   },
-  mounted() {
-    // Pobranie indeksu slajdu z parametrów trasy
-    const index = parseInt(this.$route.params.slideIndex, 10);
-    if (!isNaN(index)) {
-      this.setSlide(index);
-    }
+  // mounted() {
+  //   console.log('Początkowy indeks slajdu:', this.initialSlideIndex);
+  // },
+  setup() {
+    const slideStore = useSlideStore();
+    return {
+      initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
+    };
   },
   computed: {
     isDarkMode() {
@@ -61,17 +60,14 @@ export default {
   },
   methods: {
     nextSlide() {
-      console.log(this.currentSlide);
-
       if (this.currentSlide == 3) {
         // Przejście na nową stronę
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(0);
         this.$router.push('/about'); // Zakładając, że używasz Vue Router
       } else {
         this.currentSlide = (this.currentSlide + 1) % this.slides.length;
       }
-
-      // if this.currentSlide > 3 
-      // this.currentSlide = (this.currentSlide + 1) % this.slides.length;
     },
     prevSlide() {
       this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
@@ -80,7 +76,6 @@ export default {
       this.currentSlide = index;
     },
     handleScroll(event) {
-      console.log(event);
       const currentTime = new Date().getTime();
       if (currentTime - this.lastScroll < 500) {
         console.log('Scroll too fast');
@@ -119,6 +114,7 @@ export default {
 }
 
 .carousel-item img {
+  padding-top: 150px;
   width: 100%;
   height: 100%;
   object-fit: cover;

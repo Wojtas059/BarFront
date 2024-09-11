@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" :class="{ 'dark-mode': isDarkMode }">
     <div class="navbar-logo">
-      <router-link to="/">
+      <router-link to="/" @click="resetValue">
         <img :src="logoSrc" alt="Logo" />
       </router-link>
     </div>
@@ -15,11 +15,11 @@
     
     <ul class="navbar-list" :class="{ active: isOpen || isHovered }" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
       <li v-for="(item, index) in menuItems" :key="index" @mouseover="handleSubmenuMouseOver(index)" @mouseleave="handleSubmenuMouseLeave">
-        <router-link :to="item.link" exact-active-class="active">{{ item.name }}</router-link>
+        <router-link :to="item.link" exact-active-class="active" @click="resetValue" >{{ item.name }}</router-link>
         <!-- Submenu -->
         <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index || isMobileMenu }">
           <li v-for="(subItem, subIndex) in item.subItems" :key="subIndex">
-            <router-link :to="subItem.link">{{ subItem.name }}</router-link>
+            <router-link :to="subItem.link" exact-active-class="active" @click="resetValue"  >{{ subItem.name }}</router-link>
           </li>
         </ul>
       </li>
@@ -37,6 +37,9 @@
 </template>
 
 <script>
+
+import { useSlideStore } from '../../store/slideStore';
+
 export default {
   data() {
     return {
@@ -65,6 +68,10 @@ export default {
     },
   },
   methods: {
+    resetValue() {
+      const slideStore = useSlideStore();
+      slideStore.setSlideIndex(0);
+    },
     toggleMenu() {
       this.isOpen = !this.isOpen;
     },

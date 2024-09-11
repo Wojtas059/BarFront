@@ -396,12 +396,13 @@ html {
 
 .product-button {
   text-align: center;
-  background-color: #000;
+  background-color: var(--dark-color-background);
   color: var(--dark-color-font);
   padding: 5px 10px;
   letter-spacing: 2px;
   border: 1px solid transparent;
   transition: background 0.3s, color 0.3s;
+  border: 2px solid transparent;
   text-decoration: none;
   text-transform: none;
   /* To nadpisuje ustawienie dużych liter */
@@ -409,9 +410,9 @@ html {
 }
 
 .product-button:hover {
-  background-color: #c2c0c0;
+  background-color: var(--dark-color-font);
   color: var(--dark-color-background);
-  border: 1px solid var(--dark-color-background);
+  border: 2px solid var(--dark-color-background);
 }
 
 @media (min-width: 1200px) and (max-width: 1380px) {

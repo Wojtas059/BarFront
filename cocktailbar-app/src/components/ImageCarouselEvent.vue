@@ -29,10 +29,13 @@
 
 
 <script>
+
+import { useSlideStore } from '../../store/slideStore';
+
 export default {
   data() {
     return {
-      currentSlide: 0,
+      currentSlide: this.initialSlideIndex,
       slides: [
         { image: require('@/assets/images/offer/OFERTA-EVENTOWA-1.png'), alt: 'Image 1', header: null, title: [  'W CZYM MOŻEMY CI POMÓC? \n - GDY POTRZEBUJESZ NA SWÓJ EVENT PYSZNYCH KOKTAJLI I IDEALNĄ OBSŁUGĘ!', 'CHCEMY ZAPEWNIĆ MOŻLIWIE NAJWYŻSZĄ JAKOŚĆ KOKTAJLI I SERWISU, CO PRZEKŁADA SIĘ NA POZYTYWNE WAŻENIA TWOICH GOŚCI, DLATEGO SKUPIAMY SIĘ NA WPROWADZENIU NAJWYSZYCH TRENDÓW Z BRANŻY ALKOHOLOWEJ ORAZ SEGMENTU NOLO BRANŻY EVENTOWEJ.', 'DOŚWIADCZENIE BUDOWANE LATAMI POZWALA NAM ZAOPIEKOWAĆ SIĘ TWOIM WYDARZENIEM OD OBSŁUGI BARMAŃSKIEJ, STAWIANIE BARU PO WDROŻENIE AUTORSKIEGO MENU.'], buttonText: "Zobacz pełną ofertę", darkMode: false },
         { image: require('@/assets/images/offer/OFERTA-EVENTOWA-2.png'), header:  "OBSŁUGA IMPREZ MASOWYCH" , alt: 'Image 3', title: ['REALIZUJEMY OBSŁUGĘ STREF FESTIWALOWYCH I KONCERTÓW DLA WIĘKSZEJ PUBLICZNOŚCI.', 'DZIĘKI DOŚWIADCZENIU ZEBRANYM NA NAJWIĘKSZYCH POLSKICH FESTIWALACH POMAGAMY W ODPOWIEDNIM PLANOWANIU I BUDOWIE ZAPLECZA LOGISTYCZNEGO, CO PRZEKŁADA SIĘ NA SPRAWNIEJSZĄ SPRZEDAŻ I WYNIKAJĄCE Z NIEJ LEPSZE BUDOWANIE WIZERUNKU MARKI.' ], buttonText: "Zobacz pełną ofertę", darkMode: false },
@@ -44,6 +47,12 @@ export default {
       ]
     }
   },
+  setup() {
+    const slideStore = useSlideStore();
+    return {
+      initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
+    };
+  },
   computed: {
     isDarkMode() {
       return this.slides[this.currentSlide].darkMode || false;
@@ -51,12 +60,21 @@ export default {
   },
   methods: {
     nextSlide() {
-      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      if  (this.currentSlide == 4) {
+        // Przejście na nową stronę
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(0);
+        this.$router.push('/offer/rent'); // Zakładając, że używasz Vue Router
+      } else {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      }
     },
     prevSlide() {
       if (this.currentSlide == 0) {
         // Przejście na nową stronę
-        this.$router.push({ name: 'HomePage', params: { slideIndex: 3 } }); // Zakładając, że używasz Vue Router
+        const slideStore = useSlideStore();
+        slideStore.setSlideIndex(2);
+        this.$router.push('/about'); // Zakładając, że używasz Vue Router
       } else {
         this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
       }
