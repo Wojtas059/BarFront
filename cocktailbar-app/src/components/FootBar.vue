@@ -161,12 +161,45 @@ export default {
 }
 
 /* Dla urządzeń mobilnych */
-@media (max-width: 822px) {
+@media (max-width: 700px) {
     .copy {
         font-size: 8px;
     }
+
+    .horizontal-line {
+        margin: 10px;
+    }
+
     .footer-content {
         font-size: 10px;
+        padding: 5px;
+    }
+    .footer-content {
+        flex-direction: column;  /* Ustawienie elementów w wiersze */
+        align-items: center;     /* Wyrównanie elementów w środku */
+        padding: 20px;           /* Dodatkowy padding dla lepszego wyglądu */
+    }
+
+    .column {
+        width: 90%;
+        margin-left: 30px;
+        align-items: center; 
+    }
+
+    .footer-nav {
+        margin: 20px 0;
+    }
+    .social-icons {
+        margin-bottom: 20px;
+    }
+
+    .column p,
+    .column ul {
+        padding-left: 10px;
+    }
+
+    .column .adress {
+        margin-bottom: 15px;
     }
 }
 

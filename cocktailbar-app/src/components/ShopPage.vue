@@ -336,7 +336,7 @@ html {
 @media (max-width: 822px) {
 
   .shop {
-    padding-bottom: 300px;
+    padding-bottom: 500px;
   }
 
   .product-list.list-view .product-item {
@@ -383,6 +383,8 @@ html {
   .product-list {
     margin: 5px;
   }
+  
+  
 
 }
 </style>
