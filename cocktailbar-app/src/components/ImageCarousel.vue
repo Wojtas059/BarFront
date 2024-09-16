@@ -261,19 +261,28 @@ export default {
 
 @media (max-width: 1300px){
   .caption p{
-    font-size: 12px;
+    font-size: 16px;
   }
   .hero-button {
-    font-size: 15px;
+    font-size: 17px;
+  }
+
+  .carousel-item img {
+    padding-top: 100px;
   }
 }
 
 @media (max-width: 822px) {
+
+  .carousel-item img {
+    padding-top: 100px;
+  }
+
   .caption p{
-    font-size: 11px;
+    font-size: 16px;
   }
   .hero-button {
-    font-size: 14px;
+    font-size: 17px;
   }
 }
 </style>

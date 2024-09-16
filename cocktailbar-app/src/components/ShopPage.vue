@@ -342,6 +342,25 @@ html {
   .product-item {
     max-width: 100%;
     flex-direction: row;
+    margin: 20px;
+    margin-bottom: 0px;
   }
+
+  .product-list.list-view .product-button {
+    display: flex;
+    justify-content: center;  /* Wyrównanie poziome */
+    align-items: center; 
+    font-size: 14px;
+    width: 120px;
+    height: 35px;
+  }
+
+  .product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+
+
 }
 </style>
