@@ -166,8 +166,10 @@ export default {
         font-size: 8px;
     }
 
-    .horizontal-line {
-        margin: 10px;
+
+    .app-footer .horizontal-line {
+        width: 100% !important;
+        margin: 10px auto;
     }
 
     .footer-content {
