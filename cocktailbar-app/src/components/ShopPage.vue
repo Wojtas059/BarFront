@@ -152,7 +152,7 @@ html {
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding-top: 290px;
+  padding-top: 200px;
   box-sizing: border-box;
   background-color: var(--dark-color-font);
   color: var(--dark-color-background);
@@ -384,6 +384,14 @@ html {
     margin: 5px;
   }
   
+  .shop .header {
+    width: 100%;
+    /* Ustawienie szerokości na 100% */
+    max-width: 1400px;
+    text-align: left; /* Wyrównanie tekstu do lewej */
+    /* Dodanie marginesu poniżej nagłówka, jeśli potrzebne */
+    margin: 20px 20px 20px 20px;
+  }
   
 
 }
