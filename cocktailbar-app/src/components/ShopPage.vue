@@ -334,6 +334,11 @@ html {
 
 /* Dla urządzeń mobilnych wymuś widok listy */
 @media (max-width: 822px) {
+
+  .shop {
+    padding-bottom: 300px;
+  }
+
   .product-list.list-view .product-item {
     flex-direction: row;
     width: 100%;

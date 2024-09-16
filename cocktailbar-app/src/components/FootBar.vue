@@ -159,4 +159,16 @@ export default {
 .copy {
     font-size: 11px;
 }
+
+/* Dla urządzeń mobilnych */
+@media (max-width: 822px) {
+    .copy {
+        font-size: 8px;
+    }
+    .footer-content {
+        font-size: 10px;
+    }
+}
+
+
 </style>
