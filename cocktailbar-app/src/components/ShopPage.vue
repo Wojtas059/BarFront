@@ -347,8 +347,9 @@ html {
   .product-item {
     max-width: 100%;
     flex-direction: row;
-    margin: 20px;
+    margin: 10px;
     margin-bottom: 0px;
+    padding: 10px;
   }
 
   .product-list.list-view .product-button {
@@ -366,6 +367,22 @@ html {
     object-fit: cover;
   }
 
+  .product-details {
+    margin: 10px;
+    padding: 5px;
+    border-left: none;
+  }
+
+  .product-list.list-view .product-details .prod-info .name-prod {
+    font-size: 18px;
+  }
+  .product-list.list-view .product-details .prod-info .price {
+    font-size: 14px;
+  }
+
+  .product-list {
+    margin: 5px;
+  }
 
 }
 </style>
