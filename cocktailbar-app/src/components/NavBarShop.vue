@@ -7,18 +7,10 @@
         </router-link>
       </div>
 
-      <!-- <div class="navbar-toggle" @click="toggleMenu" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div> -->
-
       <ul class="navbar-list" :class="{ active: isOpen || isHovered }">
-        <!-- Przycisk z lupą -->
         <button class="search-button" @click="toggleSearch">
           <i class="pi pi-search"></i>
         </button>
-        <!-- Pole do wpisywania tekstu wyszukiwania -->
         <li v-if="isSearchOpen" class="search-input">
           <input type="text" placeholder="Szukaj..." />
         </li>
@@ -31,7 +23,6 @@
             <template v-else>
             {{item.name}}
             </template>
-            <!-- <img :src="item.icon" alt="Logo" /> -->
           </router-link>
         </li>
       </ul>
@@ -61,7 +52,6 @@
             exact-active-class="active">
             {{ item.name }}
           </button>
-          <!-- Dodany przycisk w głównym elemencie listy -->
           <ul v-if="item.subItems" class="dropdown-menu" :class="{ active: isSubmenuOpen === index }">
             <li v-for="(subItem, subIndex) in item.subItems" :key="subIndex">
               <button @click="selectCategory(subItem)">{{ subItem.name }}</button>
@@ -85,7 +75,7 @@ export default {
       hoverTimeout: null,
       isDarkMode: true,
       selectedCategory: 'Home',
-      isSearchOpen: false,  // Zmienna do zarządzania polem wyszukiwania
+      isSearchOpen: false,
       menuItems: [
         { name: 'Cennik', link: '/price', icon: null },
         { name: 'Koszyk', link: '/cart', icon: require('@/assets/icons/shopping-cart.png') },
@@ -132,14 +122,11 @@ export default {
       localStorage.setItem('isDarkMode', this.isDarkMode);
     },
     selectCategory(category) {
-      // console.log(category);
-
       this.selectedCategory = category.name;
       this.$emit('categorySelected', category);
       if (this.$route.path != '/rent') {
         this.$router.push('/rent');
       } 
-      // this.$emit('update:selectedCategory', category);
     },
   }
 };

@@ -1,0 +1,172 @@
+{
+    "pl": {
+        "nav_bar": {
+            "home": "home", 
+            "about_us": "o nas",
+            "event": "eventy",
+            "rental": "wypożyczalnia",
+            "realizations": "realizacje",
+            "contact": "kontakt"
+        },
+        "home_page_1": {
+            "button": "Sprawdź",
+            "title": {
+                "Image 1": ["OBSŁUGA", "EVENTÓW", "BRAND EXPERIENCE"],
+                "Image 2": ["Wynajem sprzętu", "Gastronomicznego", "i barów mobilnych"],
+                "Image 3": ["OBSŁUGA przyjęć", "i imprez", "okolicznościowych"],
+                "Image 4": ["OBSŁUGA", "IMPREZ MASOWYCH", "I FESTIWALI"]
+
+            }
+            
+        },
+        "about_us": {
+            "title": {
+                "Image 1": [
+                    "WITAJ W ŚWIECIE COCKTAIL SERVICE, GDZIE KOKTAJLE TO DZIEŁA SZTUKI, A KAŻDE \n WYDARZENIE STAJE SIĘ NIEZAPOMNIANYM PRZEŻYCIEM! \n PRZYKŁADAMY NAJWIĘKSZĄ UWAGĘ DO JAKOŚCI SERWISU, SKŁADNIKÓW \n ORAZ UŻYWANEGO PRZEZ NAS SPRZĘTU.", 
+                    "NA NASZĄ OFERTĘ SKŁADAJĄ SIĘ WSZYSTKIE ELEMENTY POTRZEBNE DO ORGANIZACJI \nWYJĄTKOWEGO EVENTU: OD NAJLEPSZEJ OBSŁUGI, PRZEZ MOBILNE BARY I ELEGANCKIE\nSZKŁO, PO WYDAJNE GRANITORY I ZMYWARKI.\nMAMY WSZYSTKO, CZEGO POTRZEBUJE NOWOCZESNY BAR, ABY ZROBIĆ WRAŻENIE\nI ZASPOKOIĆ GOŚCI SPRAGNIONYCH NAJINTENSYWNIEJSZYCH DOZNAŃ."
+                ],
+                "Image 2": [
+                    "OD PONAD 15 LAT ZAJMUJEMY SIĘ OBSŁUGĄ BARMAŃSKĄ WYDARZEŃ KAŻDEGO RODZAJU.\nDZIĘKI DOŚWIADCZENIU ZDOBYTEMU NA SETKACH ZREALIZOWANYCH EVENTÓW, JESTEŚMY\nW STANIE ODNALEŹĆ SIĘ W KAŻDYCH WARUNKACH.", 
+                    "WSPÓŁPRACUJEMY Z NAJBARDZIEJ UZNANYMI BARMANKAMI I BARMANAMI Z NAJLEPSZYCH\nLOKALI W CAŁEJ POLSCE. SKUPIAMY SIĘ NA WPROWADZENIU NAJNOWSZYCH TRENDÓW\nZ BRANŻY ALKOHOLOWEJ ORAZ SEGMENTU NOLO DO BRANŻY EVENTOWEJ. ZAPEWNIAMY\nNAJLEPSZĄ JAKOŚĆ KOKTAJLI I OBSŁUGI,CO PRZEKŁADA SIĘ NA POZYTYWNE WRAŻENIA\nZWIĄZANE Z WYDARZENIAMI, A W REZULTACIE MARKAMI KLIENTÓW."
+                ],
+                "Image 3": [
+                    "spędził ponad 10 lat w najlepszych warszawskich barach,\nw międzyczasie obsługując setki eventów. Laureat Ballantine's Bartenders\nChallenge 2018 i finalista wielu innych konkursów barmańskich.\n","Założyciel dwóch agencji barmańskich:\nBarspoke i Cocktail Service. W pracy wprowadza nowinki z branży alkoholowej\ni segmentu nolo do świata eventowego. Szczególną dbałość przykłada\ndo jakości koktajli i spójności menu z identyfikacją klienta.\n\nPrywatnie fan niezobowiązującej książki i opiekun dwóch królików."
+                ],
+                "Image 4": [
+                    "spędził ponad 10 lat w najlepszych warszawskich barach,\nw międzyczasie obsługując setki eventów. Laureat Ballantine's Bartenders\nChallenge 2018 i finalista wielu innych konkursów barmańskich.\n","Założyciel dwóch agencji barmańskich:\nBarspoke i Cocktail Service. W pracy wprowadza nowinki z branży alkoholowej\ni segmentu nolo do świata eventowego. Szczególną dbałość przykłada\ndo jakości koktajli i spójności menu z identyfikacją klienta.\n\nPrywatnie fan niezobowiązującej książki i opiekun dwóch królików."
+                ]
+            },
+            "headers": {
+                "Image 1": null,
+                "Image 2": null,
+                "Image 3": "KRZYSZTOF BRZOSTOWSKI\n\n",
+                "Image 4": "Michał baran\n\n"
+            }
+        },
+        "event_page": {
+            "title": {
+                "Image 1": [
+                    " SZUKASZ WYJĄTKOWYCH KOKTAJLI NA SWOJĄ IMPREZĘ?\nZALEŻY CI NA NAJLEPSZEJ JAKOŚCI OBSŁUGI?\nCHCESZ, BY GOŚCIE NA DŁUGO ZAPAMIĘTALI TWOJE WYDARZENIE?\nU NAS JEST TO PEWNE!\n\nZAPRASZAJĄC NAS DO WSPÓŁPRACY MASZ GWARANCJĘ, ŻE STREFA BAROWA ZOSTANIE\nPRZYGOTOWANA NA\nNAJWYŻSZYM POZIOMIE. NASI BARMANI ZAOPIEKUJĄ SIĘ TWOIMI GOŚCMI\nI PRZYGOTUJĄ WYJĄTKOWE AUTORSKIE MENU, KTÓRE TRAFI W GUSTA WSZYSTKICH\nUCZESTNIKÓW. ZADBAMY TAKŻE O JAK NAJLEPSZE WRAŻENIA SMAKOWE DLA OSÓB\nNIEPIJĄCYCH, PRZYGOTOWUJĄC MODNE I PYSZNE MOKTAJLE."
+                
+                ],
+                "Image 2": ["REALIZUJEMY NASZE USŁUGI NA TERENIE CAŁEJ POLSKI. ZAJMUJEMY SIĘ OBSŁUGĄ EVENTÓW \nFIRMOWYCH, KONFERENCJI CZY IMPREZ INTEGRACYJNYCH. OPRÓCZ KLASYCZNEJ OBSŁUGI\nBAROWEJ, MOŻEMY POMÓC CI W ZAPEWNIENIU DODATKOWYCH ATRAKCJI,\nKTÓRE UŚWIETNIĄ WIECZÓR I BĘDĄ WSPÓŁGRAĆ Z PRZYGOTOWANĄ PRZEZ NAS OFERTĄ.\nZORGANIZUJEMY DEGUSTACJĘ WYBRANYCH ALKOHOLI Z RÓŻNYCH ZAKĄTKÓW ŚWIATA LUB WARSZTATY KOKTAJLOWE,\nRÓWNIEŻ W WERSJI BEZALKOHOLOWEJ."],
+                "Image 3": [
+                    "SPECJALIZUJEMY SIĘ W OBSŁUDZE EVENTÓW Z ZAKRESU BRAND EXPERIENCE.\nNASZE KOKTAJLE POMAGAJĄ BUDOWAĆ ŚWIADOMOŚĆ I ROZPOZNAWALNOŚĆ MARKI DZIĘKI\nBRANDINGOWI, KTÓRY WSPÓŁGRA Z MOTYWEM PRZEWODNIM WYDARZENIA.\nMOGĄ BYĆ TO POZYCJE KOKTAJLOWE CZY CAŁE MENU INSPIROWANE TWOIM PRODUKTEM\nLUB MARKĄ, A TAKŻE JADALNE APLIKACJE Z WYKORZYSTANIEM LOGO.\n\nPOWIEDZ NAM, CO CHCESZ PRZEKAZAĆ, A MY ZAJMIEMY SIĘ RESZTĄ!"],
+                "Image 4": [
+                    "OBSŁUGUJEMY STREFY FESTIWALOWE I KONCERTY. DZIĘKI DOŚWIADCZENIOM ZEBRANYM\nNA NAJWIĘKSZYCH POLSKICH FESTIWALACH POMAGAMY W ODPOWIEDNIM PLANOWANIU I BUDOWIE\nZAPLECZA LOGISTYCZNEGO, CO PRZEKŁADA SIĘ NA SPRAWNIEJSZĄ SPRZEDAŻ I WYNIKAJĄCE\nZ NIEJ LEPSZE BUDOWANIE WIZERUNKU MARKI."],
+                "Image 5": [
+                    "ZAJMIEMY SIĘ TAKŻE OBSŁUGĄ TWOJEJ IMPREZY OKOLICZNOŚCIOWEJ. BEZ WZGLĘDU NA MIEJSCE,\nGDZIE SIĘ ODBYWA, JESTEŚMY W STANIE PRZYSTOSOWAĆ WYPOSAŻENIE I ZESPÓŁ TAK, BY ZAPEWNIĆ UCZESTNIKOM\nNIEZAPOMNIANE CHWILE. NASZE ZAPLECZE SPRZĘTOWE POZWALA NAM NA OBSŁUGĘ WIELU IMPREZ\nJEDNEGO DNIA, BEZ WZGLĘDU NA LICZBĘ ZAPROSZONYCH GOŚCI.\n\nZAPEWNIAMY WYKWALIFIKOWANYCH BARMANÓW ORAZ NIEZBĘDNE WYPOSAŻENIE,\nDZIĘKI CZEMU W DNIU PRZYJĘCIA NIE MUSISZ PRZEJMOWAĆ SIĘ NICZYM CO JEST\nZWIĄZANE Z BAREM."],
+                "Image 6": [
+                    "CHCĄC ZAPEWNIĆ JAK NAJLEPSZĄ JAKOŚĆ SERWISU NA WYDARZENIACH, BUDUJEMY WŁASNE\nMOBILNE BARY, KTÓRE POZWALAJĄ NA SPRAWNY SERWIS W KAŻDYCH WARUNKACH.\nDZIĘKI WIEDZY ZDOBYTEJ W PRAKTYCE, ŁĄCZYMY ERGONOMIĘ ORAZ WYTRZYMAŁOŚĆ,\nCO POZWALA NA REDUKOWANIE KOSZTÓW PROJEKTU W DŁUŻSZYM CZASIE.\nNASZE BARY PRAKTYCZNIE NIE WYMAGAJĄ SERWISOWANIA, A ODPOWIEDNIE ZABEZPIECZENIA\nPODCZAS TRANSPORTU NIWELUJĄ RYZYKO ICH USZKODZENIA.\nZ CHĘCIĄ PODZIELIMY SIĘ TĄ WIEDZĄ I POMOŻEMY SKONSTRUOWAĆ BARY DLA KLIENTÓW,\nBIORĄC JEDNOCZEŚNIE POD UWAGĘ PRZYSZŁĄ EKSPLOATACJĘ SPRZĘTU."]
+            },
+            "headers": {
+                "Image 1": null,
+                "Image 2": "OBSŁUGA IMPREZ FIRMOWYCH \n \n",
+                "Image 3": "OBSŁUGA EVENTÓW BRAND EXPERIENCE",
+                "Image 4": "OBSŁUGA IMPREZ MASOWYCH",
+                "Image 5": "OBSŁUGA PRZYJĘĆ I IMPREZ OKOLICZNOŚCIOWYCH",
+                "Image 6": "PRODUKCJA STREF BAROWYCH"
+            }
+        },
+        "contact_page": {
+            "managers": "managerowie",
+            "text_from": "KAŻDE WYDARZENIE TRAKTUJEMY INDYWIDUALNIE.\nCHĘTNIE POMOŻEMY W ORGANIZACJI TWOJEGO EVENTU,\nNAPISZ DO NAS Z ZAPYTANIEM W FORMULARZU:",
+            "form": {
+                "address": "Adres e-mail odbiorcy",
+                "your_address": "twój adres email",
+                "subject": "temat wiadomości",
+                "message": "treść",
+                "button": "wyślij"
+            },
+            "office_name": "NASZE BIURO I MAGAZYN\n\nCOCKTAIL SERVICE SP. Z O.O.\nJAGIELLOŃSKA 82C BUD. 109\n03-301, WARSZAWA"
+        }
+
+
+    },
+    "en": {
+        "nav_bar": {
+            "home": "home", 
+            "about_us": "about us",
+            "event": "events",
+            "rental": "rental",
+            "realizations": "realizations",
+            "contact": "contact"
+        },
+        "home_page_1": {
+            "button": "Check",
+            "title": {
+                "Image 1": ["EVENT", "SERVICE", "BRAND EXPERIENCE"],
+                "Image 2": ["Rental of", "Gastronomic equipment", "and mobile bars"],
+                "Image 3": ["Service of", "receptions", "and occasional events"],
+                "Image 4": ["Service of", "MASS EVENTS", "AND FESTIVALS"]
+
+            }
+            
+        },
+        "about_us": {
+            "title": {
+                "Image 1": [
+                    "WELCOME TO THE WORLD OF COCKTAIL SERVICE, WHERE COCKTAILS ARE WORKS OF ART,\n AND EVERY EVENT BECOMES AN UNFORGETTABLE EXPERIENCE! \nWE PAY THE GREATEST ATTENTION TO THE QUALITY OF SERVICE, INGREDIENTS\nAND EQUIPMENT WE USE.", 
+                    "OUR OFFER CONSISTS OF ALL THE ELEMENTS NECESSARY TO ORGANIZE\nAN EXCEPTIONAL EVENT: FROM THE BEST SERVICE, THROUGH MOBILE BARS AND ELEGANT\nGLASSWARE, TO EFFICIENT GRANITORS AND DISHWASHERS.\nWE HAVE EVERYTHING A MODERN BAR NEEDS TO IMPRESS\nAND SATISFY GUESTS THIRSTY FOR THE MOST INTENSE EXPERIENCES."
+                ],
+                "Image 2": [
+                    "FOR OVER 15 YEARS WE HAVE BEEN ENGAGED IN BAR SERVICE FOR EVENTS OF ALL KINDS.\nTHANKS TO THE EXPERIENCE GAINED AT HUNDREDS OF EVENTS, WE ARE\nABLE TO FIND OURSELVES IN ANY CONDITIONS.", 
+                    "WE COOPERATE WITH THE MOST RECOGNIZED BARTENDERS FROM THE BEST\nBARS IN POLAND. WE FOCUS ON INTRODUCING THE LATEST TRENDS\nFROM THE ALCOHOL INDUSTRY AND THE NOLO SEGMENT TO THE EVENT INDUSTRY.\nWE PROVIDE THE BEST QUALITY OF COCKTAILS AND SERVICE, WHICH TRANSLATES\nINTO POSITIVE IMPRESSIONS RELATED TO EVENTS, AND AS A RESULT, THE BRANDS OF OUR CLIENTS."
+                ],
+                "Image 3": [
+                    "spent over 10 years in the best Warsaw bars,\nand in the meantime, he served hundreds of events. Winner of Ballantine's Bartenders\nChallenge 2018 and finalist in many other bartending competitions.\n","Founder of two bartending agencies:\nBarspoke and Cocktail Service. At work, he introduces novelties from the alcohol industry\nand the nolo segment to the event world. He pays special attention\nto the quality of cocktails and the consistency of the menu with the client's identification.\n\nPrivately, a fan of non-binding books and the guardian of two rabbits."
+                ],
+                "Image 4": [
+                    "spent over 10 years in the best Warsaw bars,\nand in the meantime, he served hundreds of events. Winner of Ballantine's Bartenders\nChallenge 2018 and finalist in many other bartending competitions.\n","Founder of two bartending agencies:\nBarspoke and Cocktail Service. At work, he introduces novelties from the alcohol industry\nand the nolo segment to the event world. He pays special attention\nto the quality of cocktails and the consistency of the menu with the client's identification.\n\nPrivately, a fan of non-binding books and the guardian of two rabbits."
+                ]
+            },
+            "headers": {
+                "Image 1": null,
+                "Image 2": null,
+                "Image 3": "KRZYSZTOF BRZOSTOWSKI",
+                "Image 4": "Michał baran"
+            }
+        },
+        "event_page": {
+            "title": {
+                "Image 1": [
+                    "LOOKING FOR EXCEPTIONAL COCKTAILS FOR YOUR EVENT?\nDO YOU CARE ABOUT THE BEST QUALITY OF SERVICE?\nDO YOU WANT YOUR GUESTS TO REMEMBER YOUR EVENT FOR A LONG TIME?\nWITH US, IT'S A SURE THING!\n\nBY INVITING US TO COOPERATE, YOU CAN BE SURE THAT THE BAR AREA WILL BE\nPREPARED AT\nTHE HIGHEST LEVEL. OUR BARTENDERS WILL TAKE CARE OF YOUR GUESTS\nAND PREPARE UNIQUE AUTHOR'S MENU THAT WILL APPEAL TO ALL\nPARTICIPANTS. WE WILL ALSO TAKE CARE OF THE BEST TASTE IMPRESSIONS FOR NON-DRINKERS,\nPREPARING TRENDY AND DELICIOUS MOCKTAILS."
+                
+                ],
+                "Image 2": ["WE PROVIDE OUR SERVICES THROUGHOUT POLAND. WE DEAL WITH THE SERVICE OF\nCORPORATE EVENTS, CONFERENCES OR INTEGRATION EVENTS. IN ADDITION TO THE CLASSIC\nBAR SERVICE, WE CAN HELP YOU PROVIDE ADDITIONAL ATTRACTIONS,\nWHICH WILL BRIGHTEN THE EVENING AND WILL COOPERATE WITH OUR OFFER.\nWE WILL ORGANIZE TASTINGS OF SELECTED ALCOHOLS FROM DIFFERENT PARTS OF THE WORLD OR COCKTAIL WORKSHOPS,\nALSO IN THE NON-ALCOHOLIC VERSION."],
+                "Image 3": [
+                    "WE SPECIALIZE IN SERVICING BRAND EXPERIENCE EVENTS.\nOUR COCKTAILS HELP BUILD AWARENESS AND RECOGNITION OF THE BRAND THANKS TO\nBRANDING, WHICH COOPERATES WITH THE THEME OF THE EVENT.\nTHESE CAN BE COCKTAIL POSITIONS OR ENTIRE MENUS INSPIRED BY YOUR PRODUCT\nOR BRAND, AS WELL AS EDIBLE APPLICATIONS USING THE LOGO.\n\nTELL US WHAT YOU WANT TO COMMUNICATE, AND WE WILL TAKE CARE OF THE REST!"],
+                "Image 4": [
+                    "WE SERVICE FESTIVAL ZONES AND CONCERTS. THANKS TO THE EXPERIENCE GATHERED\nAT THE LARGEST POLISH FESTIVALS, WE HELP IN PROPER PLANNING AND BUILDING\nOF THE LOGISTICS BASE, WHICH TRANSLATES INTO MORE EFFICIENT SALES AND\nBETTER BRAND IMAGE BUILDING."],
+                "Image 5": [
+                    "WE WILL ALSO TAKE CARE OF SERVICING YOUR OCCASIONAL EVENT. REGARDLESS OF THE PLACE\nWHERE IT TAKES PLACE, WE ARE ABLE TO ADAPT THE EQUIPMENT AND TEAM\nTO PROVIDE PARTICIPANTS WITH UNFORGETTABLE MOMENTS. OUR EQUIPMENT BASE ALLOWS US TO SERVICE MANY EVENTS\nIN ONE DAY, REGARDLESS OF THE NUMBER OF INVITED GUESTS.\n\nWE PROVIDE QUALIFIED BARTENDERS AND NECESSARY EQUIPMENT,\nSO YOU DON'T HAVE TO WORRY ABOUT ANYTHING RELATED TO THE BAR ON THE DAY OF THE RECEPTION."],
+                "Image 6": [
+                    "TO ENSURE THE BEST QUALITY OF SERVICE AT EVENTS, WE BUILD OUR OWN\nMOBILE BARS, WHICH ALLOW FOR EFFICIENT SERVICE IN ANY CONDITIONS.\nTHANKS TO THE KNOWLEDGE GAINED IN PRACTICE, WE COMBINE ERGONOMICS AND DURABILITY,\nWHICH ALLOWS TO REDUCE THE COSTS OF THE PROJECT IN THE LONG RUN.\nOUR BARS PRACTICALLY DO NOT REQUIRE SERVICING, AND APPROPRIATE PROTECTIONS\nDURING TRANSPORTATION MINIMIZE THE RISK OF DAMAGE.\nWE WILL GLADLY SHARE THIS KNOWLEDGE AND HELP YOU CONSTRUCT BARS FOR CLIENTS,\nTAKING INTO ACCOUNT THE FUTURE OPERATION OF THE EQUIPMENT."]
+            },
+            "headers": {
+                "Image 1": null,
+                "Image 2": "SERVICE OF CORPORATE EVENTS",
+                "Image 3": "SERVICE OF BRAND EXPERIENCE EVENTS",
+                "Image 4": "SERVICE OF MASS EVENTS",
+                "Image 5": "SERVICE OF RECEPTIONS AND OCCASIONAL EVENTS",
+                "Image 6": "PRODUCTION OF BAR ZONES"
+            }
+        },
+
+        "contact_page": {
+            "managers": "managers",
+            "text_from": "WE TREAT EVERY EVENT INDIVIDUALLY.\nWE WILL GLADLY HELP YOU ORGANIZE YOUR EVENT,\nWRITE TO US WITH AN INQUIRY IN THE FORM:",
+            "form": {
+                "address": "Recipient's email address",
+                "your_address": "your email address",
+                "subject": "message subject",
+                "message": "content",
+                "button": "send"
+            },
+            "office_name": "OUR OFFICE AND WAREHOUSE\n\nCOCKTAIL SERVICE SP. Z O.O.\nJAGIELLOŃSKA 82C BUD. 109\n03-301, WARSAW"
+        }
+
+    }
+
+
+}

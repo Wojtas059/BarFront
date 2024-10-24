@@ -23,5 +23,10 @@ body {
     color: var(--dark-color-font);
     text-transform: uppercase;
 }
-
+button {
+  font-family: 'MyFont', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dark-color-font);
+}
 

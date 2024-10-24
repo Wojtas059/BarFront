@@ -28,8 +28,8 @@
     <div class="language-select">
       <ul class="nav-menu">
         <li>
-          <router-link to="" exact-active-class="active">PL</router-link>
-          <router-link to="" exact-active-class="active">EN</router-link>
+          <button @click="changeLanguage('pl')" :class="{ 'active': currentLanguage === 'pl' }" exact-active-class="active">POL</button>
+          <button @click="changeLanguage('en')" :class="{ 'active': currentLanguage === 'en' }" exact-active-class="active">ENG</button>
         </li>
       </ul>
     </div>
@@ -37,29 +37,55 @@
 </template>
 
 <script>
-
+import { computed, ref } from 'vue';
 import { useSlideStore } from '../../store/slideStore';
+import translationsData from '@/assets/text_lang/translations.json';
+import { useLanguageStore } from '@/theme'; 
 
 export default {
   data() {
     return {
-      isOpen: false,
-      isHovered: false,
-      isSubmenuOpen: null,
-      hoverTimeout: null,
-      isDarkMode: true,
-      isMobile: window.innerWidth <= 1269,
-      menuItems: [
-        { name: 'Home', link: '/' },
-        { name: 'O Nas', link: '/about' },
-        { name: 'Oferta \u25BC', link: '/offer/event', subItems: [
-          { name: 'Oferta wypożyczalni', link: '/offer/rent' },
-          { name: 'Oferta eventowa', link: '/offer/event' }
-        ]},
-        { name: 'wypożyczalnia', link: '/rent' },
-        { name: 'Portfolio', link: '/portfolio' },
-        { name: 'Kontakt', link: '/contact' },
-      ],
+      
+    };
+  },
+  setup() {
+    // const slideStore = useSlideStore();
+    const languageStore = useLanguageStore();
+    console.log( languageStore.currentLanguage);
+    const translations = computed(() => {
+      return translationsData[languageStore.currentLanguage]["nav_bar"];
+    });
+    const currentLanguage = computed(() => languageStore.currentLanguage);
+    const changeLanguage = (lang) => {
+      languageStore.setLanguage(lang); // Zmieniamy język w store
+    };
+
+    const isOpen = ref(false);
+    const isHovered = ref(false);
+    const isSubmenuOpen = ref(null);
+    const hoverTimeout = ref(null);
+    const isDarkMode = ref(true);
+    const isMobile = ref(window.innerWidth <= 1269);
+    const menuItems = computed(() => [
+      { name: translations.value.home, link: '/' },
+      { name: translations.value.about_us, link: '/about' },
+      { name: translations.value.event, link: '/event' },
+      { name: translations.value.rental, link: '/rent' },
+      { name: translations.value.realizations, link: '/portfolio' },
+      { name: translations.value.contact, link: '/contact' }
+    ]);
+
+    return {
+      currentLanguage,
+      changeLanguage,
+      translations,
+      isOpen,
+      isHovered,
+      isSubmenuOpen,
+      hoverTimeout,
+      isDarkMode,
+      isMobile,
+      menuItems,
     };
   },
   computed: {
@@ -102,7 +128,7 @@ export default {
       this.isDarkMode = !this.isDarkMode;
       document.body.classList.toggle('dark-mode', this.isDarkMode);
       localStorage.setItem('isDarkMode', this.isDarkMode);
-    },
+    }
   },
   mounted() {
     window.addEventListener('resize', this.checkIsMobile);
@@ -130,7 +156,7 @@ export default {
   padding: 15px;
   background-color: var(--light-color-background);
   transition: background-color 0.3s ease, color 0.3s ease;
-  height: 175px;
+  height: 155px;
 }
 
 .navbar.dark-mode {
@@ -141,7 +167,6 @@ export default {
   position: absolute;
   left: 10px;
 }
-
 
 .navbar-logo router-link {
   display: inline-block;
@@ -262,6 +287,34 @@ export default {
   padding: 0;
   margin: 0;
 }
+
+
+.nav-menu li button {
+  display: block;
+  font-size: 14px;
+  color: var(--light-color-font);
+  background: none;
+  padding: 20px 20px;
+  border: none;
+  margin: 0px;
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.dark-mode .nav-menu li button {
+  color: var(--dark-color-font);
+}
+
+.nav-menu li button:hover {
+  border-bottom: 2px solid var(--dark-color-font) 
+}
+
+.nav-menu li button.active {
+  border-bottom: 2px solid var(--dark-color-font);
+}
+
+
 
 .language-select {
   display: flex;

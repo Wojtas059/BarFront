@@ -15,7 +15,7 @@
         </div>
         <div class="vertical-line"></div>
         <div class="column right-column">
-          <p>MANAGEROWIE</p>
+          <p>{{translations.managers}}</p>
           <div class="manager">
             <p>MICHAŁ BARAN</p>
             <a href="tel:+48664994155" class="contact-info">+48 664 994 155</a><br>
@@ -32,7 +32,7 @@
       <div class="block">
         <div class="column left-column">
           <div class="logos">
-            <p class="title-text" >{{text_from}}</p>
+            <p class="title-text" >{{translations.text_from}}</p>
           </div>
         </div>
         <div class="vertical-line"></div>
@@ -40,22 +40,22 @@
           <form @submit.prevent="handleSubmit">
             <div class="form-group">
               <select id="destination" placeholder="" v-model="destination" required>
-                <option value="" disabled>adres docelowy</option>
+                <option value="" disabled>{{translations.form.address}}</option>
                 <option value="michal.baran@cocktailservice.pl">MICHAL.BARAN@COCKTAILSERVICE.PL</option>
                 <option value="krzysztof.brzostowski@cocktailservice.pl">KRZYSZTOF.BRZOSTOWSKI@COCKTAILSERVICE.PL</option>
                 <option value="biuro@cocktailservice.pl">BIURO@COCKTAILSERVICE.PL</option>
               </select>
             </div>
             <div class="form-group">
-              <input type="email" id="email" v-model="email" placeholder="Twój adres email" required />
+              <input type="email" id="email" v-model="email" :placeholder=translations.form.your_address required />
             </div>
             <div class="form-group">
-              <input type="text" id="subject" v-model="subject" placeholder="Temat wiadomości" required />
+              <input type="text" id="subject" v-model="subject" :placeholder=translations.form.subject required />
             </div>
             <div class="form-group">
-              <textarea id="message" rows="5" v-model="message" placeholder="Treść" required></textarea>
+              <textarea id="message" rows="5" v-model="message" :placeholder=translations.form.message required></textarea>
             </div>
-            <button class="submit-button" type="submit">Wyślij</button>
+            <button class="submit-button" type="submit">{{translations.form.button}}</button>
           </form>
           <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
         </div>
@@ -76,7 +76,13 @@
 </template>
 
 <script>
+
+import { computed } from 'vue';
+import translationsData from '@/assets/text_lang/translations.json';
+import { useLanguageStore } from '@/theme'; 
+
 import axios from 'axios';
+
 export default {
   name: 'ContactPage',
   data() {
@@ -87,10 +93,19 @@ export default {
       successMessage: '',
       destination: '',
       logofb: require('@/assets/images/contact/fb.png'),
-      logoinst: require('@/assets/images/contact/instagram.png'),
-      text_from: 'KAŻDE WYDARZENIE TRAKTUJEMY INDYWIDUALNIE.\nCHĘTNIE POMOŻEMY W ORGANIZACJI TWOJEGO EVENTU,\nNAPISZ DO NAS Z ZAPYTANIEM W FORMULARZU:',
-      text_iframe: 'NASZE BIURO I MAGAZYN\n\nCOCKTAIL SERVICE SP. Z O.O.\nJAGIELLOŃSKA 82C BUD. 109\n03-301, WARSZAWA'
+      logoinst: require('@/assets/images/contact/instagram.png')
     };
+  },
+  setup() {
+    const languageStore = useLanguageStore();
+      
+      const translations = computed(() => {
+        return translationsData[languageStore.currentLanguage]["contact_page"];
+      });
+      return {
+        currentLanguage: languageStore.currentLanguage,
+        translations,
+      };
   },
   methods: {
     async handleSubmit() {
@@ -119,6 +134,9 @@ export default {
 
 <style scoped>
 .contact-page {
+
+  font-size: 15pt;
+  line-height: 30pt;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -265,14 +283,15 @@ a {
 .submit-button {
   background-color: var(--dark-color-background);
   color: var(--dark-color-font);
-  font-size: 16px;
+  font-size: 15pt;
+  line-height: 30pt;
 }
 
 .submit-button,
 .form-group select,
 .form-group input {
   text-align: center;
-  height: 40px;
+  height: 50px;
 }
 
 .submit-button:hover {

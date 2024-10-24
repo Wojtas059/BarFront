@@ -4,10 +4,10 @@
       <div class="carousel-item" v-for="(slide, index) in slides" :key="index">
         <img :src="slide.image" :alt="slide.alt">
         <div class="caption">
-          <p>{{ slide.title[0] }}</p>
-          <p>{{ slide.title[1] }}</p>
-          <p>{{ slide.title[2] }}</p>
-          <router-link to="/sprawdz" class="hero-button">{{ slide.buttonText }}</router-link>
+          <p>{{ translations.title[slide.alt][0] }}</p>
+          <p>{{ translations.title[slide.alt][1] }}</p>
+          <p>{{ translations.title[slide.alt][2] }}</p>
+          <router-link to="/sprawdz" class="hero-button">{{ translations.button }}</router-link>
         </div>
       </div>
     </div>
@@ -29,27 +29,33 @@
 
 <script>
 
+import { computed } from 'vue';
 import { useSlideStore } from '../../store/slideStore';
+import translationsData from '@/assets/text_lang/translations.json';
+import { useLanguageStore } from '@/theme'; 
 
 export default {
   data() {
     return {
       currentSlide: this.initialSlideIndex,
       slides: [
-        { image: require('@/assets/images/home/Home-Page-1.png'), alt: 'Image 1', title: ['OBSŁUGA', 'EVENTÓW', 'BRAND EXPERIENCE'], buttonText: 'SPRAWDŹ', darkMode: false },
-        { image: require('@/assets/images/home/Home-Page-2.png'), alt: 'Image 3', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: true },
-        { image: require('@/assets/images/home/Home-Page-3.png'), alt: 'Image 1', title: ['OBSŁUGA przyjęć', 'i imprez', 'okolicznościowych'], buttonText: 'SPRAWDŹ', darkMode: false },
-        { image: require('@/assets/images/home/IMG_7653.jpg'), alt: 'Image 4', title: ['Wynajem sprzętu', 'Gastronomicznego', 'i barów mobilnych'], buttonText: 'SPRAWDŹ', darkMode: true },
-        // Dodaj więcej slajdów według potrzeb
+        { image: require('@/assets/images/home/Home-Page-1.png'), alt: 'Image 1', darkMode: false },
+        { image: require('@/assets/images/home/Home-Page-2.png'), alt: 'Image 2', darkMode: true },
+        { image: require('@/assets/images/home/Home-Page-3.png'), alt: 'Image 3', darkMode: false },
+        { image: require('@/assets/images/home/Home-Page-4.png'), alt: 'Image 4',  darkMode: true },
       ]
     }
   },
-  // mounted() {
-  //   console.log('Początkowy indeks slajdu:', this.initialSlideIndex);
-  // },
   setup() {
     const slideStore = useSlideStore();
+    const languageStore = useLanguageStore();
+
+    const translations = computed(() => {
+      return translationsData[languageStore.currentLanguage]["home_page_1"];
+    });
     return {
+      currentLanguage: languageStore.currentLanguage,
+      translations,
       initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
     };
   },
@@ -60,7 +66,7 @@ export default {
   },
   methods: {
     nextSlide() {
-      if (this.currentSlide == 3) {
+      if (this.currentSlide ==  this.slides.length - 1) {
         // Przejście na nową stronę
         const slideStore = useSlideStore();
         slideStore.setSlideIndex(0);
@@ -121,8 +127,10 @@ export default {
 }
 
 .caption {
+  font-size: 30pt;
+  line-height: 40pt;
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: 70%;
   transform: translate(-50%, -50%);
   text-align: left;
@@ -222,9 +230,10 @@ export default {
 .hero-button {
   letter-spacing: 3px;
   text-align: center;
-  font-size: 18px;
+  font-size: 30pt;
+  line-height: 40pt;
   margin-top: 30px;
-  width: 160px;
+  width: 100%;
   height: 60px;
   display: flex;
   justify-content: center;

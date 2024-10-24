@@ -5,10 +5,9 @@
         <img :src="slide.image" :alt="slide.alt">
         <div class="overlay"></div>
         <div class="caption">
-          <p>{{ slide.title[0] }}</p> <br>
-          <p>{{ slide.title[1] }}</p> <br>
-          <p>{{ slide.title[2] }}</p>
-          <router-link v-if="slide.buttonText" :to="slide.buttonText" class="hero-button">{{ slide.buttonText }}</router-link>
+          <p class="title" v-if="translations.headers[slide.alt]">{{ translations.headers[slide.alt] }}</p>
+          <p>{{ translations.title[slide.alt][0] }}</p> <br>
+          <p>{{ translations.title[slide.alt][1] }}</p> 
         </div>
       </div>
     </div>
@@ -30,23 +29,32 @@
 <script>
 
 import { useSlideStore } from '../../store/slideStore';
-
+import { computed } from 'vue';
+import translationsData from '@/assets/text_lang/translations.json';
+import { useLanguageStore } from '@/theme'; 
 export default {
   data() {
     return {
       currentSlide: this.initialSlideIndex,
       slides: [
-        { image: require('@/assets/images/about/O-NAS-1.png'), alt: 'Image 1', 
-        title: [  'WITAJ W ŚWIECIE COCKTAIL SERVICE, GDZIE KAŻDY DRINK TO DZIEŁO SZTUKI, A KAŻDE WYDARZENIE STAJE SIĘ NIEZAPOMNIANYM PRZEŻYCIEM!', 'JESTEŚMY PASJONATAMI DOSKONAŁEJ PREZENTACJI I JAKOŚCI SERWISU, SPECJALIZUJĄC SIĘ W DOSTARCZANIU TYLKO NAJLEPSZEGO SPRZĘTU GASTRONOMICZNEGO. \nOD MOBILNYCH BARÓW, PRZEZ ELEGANCKIE SZKŁO, PO WYDAJNE GRANITORYI ZMYWARKI - MAMY WSZYSTKO, CZEGO POTRZEBUJE NOWOCZESNY BAR, ABY ZROBIĆ WRAŻENIE I ZASPOKOIĆ GOŚCI SPRAGNIONYCH NAJINTENSYWNIEJSZYCH DOZNAŃ.'], buttonText: null, darkMode: false },
-        { image: require('@/assets/images/about/O-NAS-2.png'), alt: 'Image 3', title: ['OD 15 LAT ZAJMUJEMY SIĘ OBSŁUGĄ BARMAŃSKĄ WYDARZEŃ WSZELKIEGO FORMATU. DZIĘKI DOŚWIADCZENIU ZDOBYTEMU NA SETKACH ZREALIZOWANYCH EVENTÓW, ORGANIZUJEMY WSZYSTKO W TAKI SPOSÓB, ABY CAŁOŚĆ IMPREZY PRZEBIEGAŁA BEZPROBLEMOWO.',' WSPÓŁPRACUJEMY Z BARMANKAMI I BARMANAMI Z NAJLEPSZYCH LOKALI W CAŁEJ POLSCE.',' SKUPIAMY SIĘ NA WPROWADZENIU NAJNOWSZYCH TRENDÓW Z BRANŻY ALKOHOLOWEJ ORAZ SEGMENTU NOLO DO BRANŻY EVENTOWEJ. CHCEMY ZAPEWNIĆ MOŻLIWIE NAJLEPSZĄ JAKOŚĆ KOKTAJLI I OBSŁUGI, CO PRZEKŁADA SIĘ NA POZYTYWNE WRAŻENIA ZWIĄZANE Z WYDARZENIAMI, A W REZULTACIE MARKAMI KLIENTÓW.'], buttonText: null, darkMode: false },
-        { image: require('@/assets/images/about/O-NAS-3.png'), alt: 'Image 1', title: ['OPRÓCZ USŁUG BARMAŃSKICH WYPOŻYCZAMY BARY MOBILNE ORAZ POZOSTAŁY SPRZĘT I DZIELI MY SIĘ DOŚWIADCZENIEM BUDOWANYM PRZEZ LATA'], buttonText: 'Zobacz całą ofertę', darkMode: false },
+        { image: require('@/assets/images/about/O-NAS-1.png'), alt: 'Image 1', darkMode: false},
+        { image: require('@/assets/images/about/O-NAS-2.png'), alt: 'Image 2', darkMode: false },
+        { image: require('@/assets/images/about/O-NAS-3.png'), alt: 'Image 3', darkMode: false },
+        { image: require('@/assets/images/about/O-NAS-4.png'), alt: 'Image 4', darkMode: false },
         // Dodaj więcej slajdów według potrzeb
       ]
     }
   },
   setup() {
     const slideStore = useSlideStore();
+    const languageStore = useLanguageStore();
+
+    const translations = computed(() => {
+      return translationsData[languageStore.currentLanguage]["about_us"];
+    });
     return {
+      currentLanguage: languageStore.currentLanguage,
+      translations,
       initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
     };
   },
@@ -57,11 +65,11 @@ export default {
   },
   methods: {
     nextSlide() {
-      if  (this.currentSlide == 2) {
+      if  (this.currentSlide == this.slides.length - 1) {
         // Przejście na nową stronę
         const slideStore = useSlideStore();
         slideStore.setSlideIndex(0);
-        this.$router.push('/offer/event'); // Zakładając, że używasz Vue Router
+        this.$router.push('/event'); // Zakładając, że używasz Vue Router
       }
       else {
         this.currentSlide = (this.currentSlide + 1) % this.slides.length;
@@ -140,11 +148,12 @@ export default {
 
 .caption {
   position: absolute;
+  white-space: pre-line;
   top: 50%;
   left: 45%;
   transform: translate(-50%, -50%);
   text-align: left;
-  width: 60%;
+  width: 70%;
 
 }
 
@@ -153,8 +162,13 @@ export default {
 }
 
 .caption p {
-  font-size: 18px;
+  font-size: 12pt;
+  line-height: 20pt; 
   margin: 0;
+}
+
+.caption p.title {
+  font-size: 20pt;
 }
 
 .carousel-controls {

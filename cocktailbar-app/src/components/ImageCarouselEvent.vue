@@ -5,11 +5,8 @@
         <img :src="slide.image" :alt="slide.alt">
         <div class="overlay"></div>
         <div class="caption">
-          <h3 v-if="slide.header" >{{ slide.header }}</h3>
-          <p class="title-text" >{{ slide.title[0] }}</p> <br>
-          <p class="title-text" >{{ slide.title[1] }}</p> <br>
-          <p class="title-text" >{{ slide.title[2] }}</p>
-          <router-link v-if="slide.buttonText" :to="slide.buttonText" class="hero-button">{{ slide.buttonText }}</router-link>
+          <p class="title" v-if="translations.headers[slide.alt]">{{ translations.headers[slide.alt] + "\n\n" }}</p>
+          <p>{{ translations.title[slide.alt][0] }}</p>
         </div>
       </div>
     </div>
@@ -31,17 +28,21 @@
 <script>
 
 import { useSlideStore } from '../../store/slideStore';
+import { computed } from 'vue';
+import translationsData from '@/assets/text_lang/translations.json';
+import { useLanguageStore } from '@/theme'; 
 
 export default {
   data() {
     return {
       currentSlide: this.initialSlideIndex,
       slides: [
-        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-1.png'), alt: 'Image 1', header: null, title: [  'W CZYM MOŻEMY CI POMÓC? \n - GDY POTRZEBUJESZ NA SWÓJ EVENT PYSZNYCH KOKTAJLI I IDEALNĄ OBSŁUGĘ!', 'CHCEMY ZAPEWNIĆ MOŻLIWIE NAJWYŻSZĄ JAKOŚĆ KOKTAJLI I SERWISU, CO PRZEKŁADA SIĘ NA POZYTYWNE WAŻENIA TWOICH GOŚCI, DLATEGO SKUPIAMY SIĘ NA WPROWADZENIU NAJWYSZYCH TRENDÓW Z BRANŻY ALKOHOLOWEJ ORAZ SEGMENTU NOLO BRANŻY EVENTOWEJ.', 'DOŚWIADCZENIE BUDOWANE LATAMI POZWALA NAM ZAOPIEKOWAĆ SIĘ TWOIM WYDARZENIEM OD OBSŁUGI BARMAŃSKIEJ, STAWIANIE BARU PO WDROŻENIE AUTORSKIEGO MENU.'], buttonText: "Zobacz pełną ofertę", darkMode: false },
-        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-2.png'), header:  "OBSŁUGA IMPREZ MASOWYCH" , alt: 'Image 3', title: ['REALIZUJEMY OBSŁUGĘ STREF FESTIWALOWYCH I KONCERTÓW DLA WIĘKSZEJ PUBLICZNOŚCI.', 'DZIĘKI DOŚWIADCZENIU ZEBRANYM NA NAJWIĘKSZYCH POLSKICH FESTIWALACH POMAGAMY W ODPOWIEDNIM PLANOWANIU I BUDOWIE ZAPLECZA LOGISTYCZNEGO, CO PRZEKŁADA SIĘ NA SPRAWNIEJSZĄ SPRZEDAŻ I WYNIKAJĄCE Z NIEJ LEPSZE BUDOWANIE WIZERUNKU MARKI.' ], buttonText: "Zobacz pełną ofertę", darkMode: false },
-        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-3.png'), alt: 'Image 1', header: "OBSŁUGA PRZYJĘĆ I IMPREZ OKOLICZNOŚCIOWYCH" , title: ['ZAJMIEMY SIĘ TAKŻE OBSŁUGĄ TWOJEJ IMPREZY OKOLICZNOŚCIOWEJ. NASZE ZAPLECZE SPRZĘTOWE POZWALA NAM NA OBSŁUGĘ WIELU IMPREZ JEDNEGO DNIA, BEZ WZGLĘDU NA LICZBĘ ZAPROSZONYCH GOŚCI. ZAPEWNIAMY WYKWALIFIKOWANĄ OBSŁUGĘ ORAZ WSZYSTKIE NIEZBĘDNE RZECZY, DZIĘKI CZEMU NIE MUSISZ PRZEJMOWAĆ SIĘ NICZYM CO JEST ZWIĄZANE Z BAREM W DNIU PRZYJĘCIA.'], buttonText: 'Zobacz całą ofertę', darkMode: false },
-        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-4.png'), alt: 'Image 1', header: "OBSŁUGA PRZYJĘĆ I IMPREZ OKOLICZNOŚCIOWYCH" , title: ['ZAJMIEMY SIĘ TAKŻE OBSŁUGĄ TWOJEJ IMPREZY OKOLICZNOŚCIOWEJ. NASZE ZAPLECZE SPRZĘTOWE POZWALA NAM NA OBSŁUGĘ WIELU IMPREZ JEDNEGO DNIA, BEZ WZGLĘDU NA LICZBĘ ZAPROSZONYCH GOŚCI. ZAPEWNIAMY WYKWALIFIKOWANĄ OBSŁUGĘ ORAZ WSZYSTKIE NIEZBĘDNE RZECZY, DZIĘKI CZEMU NIE MUSISZ PRZEJMOWAĆ SIĘ NICZYM CO JEST ZWIĄZANE Z BAREM W DNIU PRZYJĘCIA.'], buttonText: 'Zobacz całą ofertę', darkMode: false },
-        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-5.png'), alt: 'Image 1', header: "OBSŁUGA PRZYJĘĆ I IMPREZ OKOLICZNOŚCIOWYCH" , title: ['ZAJMIEMY SIĘ TAKŻE OBSŁUGĄ TWOJEJ IMPREZY OKOLICZNOŚCIOWEJ. NASZE ZAPLECZE SPRZĘTOWE POZWALA NAM NA OBSŁUGĘ WIELU IMPREZ JEDNEGO DNIA, BEZ WZGLĘDU NA LICZBĘ ZAPROSZONYCH GOŚCI. ZAPEWNIAMY WYKWALIFIKOWANĄ OBSŁUGĘ ORAZ WSZYSTKIE NIEZBĘDNE RZECZY, DZIĘKI CZEMU NIE MUSISZ PRZEJMOWAĆ SIĘ NICZYM CO JEST ZWIĄZANE Z BAREM W DNIU PRZYJĘCIA.'], buttonText: 'Zobacz całą ofertę', darkMode: false },
+        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-1.png'), alt: 'Image 1', darkMode: false },
+        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-2.png'), alt: 'Image 2', darkMode: false },
+        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-3.png'), alt: 'Image 3', darkMode: false },
+        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-4.png'), alt: 'Image 4', darkMode: false },
+        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-5.png'), alt: 'Image 5', darkMode: false },
+        { image: require('@/assets/images/offer/OFERTA-EVENTOWA-6.jpg'), alt: 'Image 6', darkMode: false },
 
         // Dodaj więcej slajdów według potrzeb
       ]
@@ -49,7 +50,14 @@ export default {
   },
   setup() {
     const slideStore = useSlideStore();
+    const languageStore = useLanguageStore();
+
+    const translations = computed(() => {
+      return translationsData[languageStore.currentLanguage]["event_page"];
+    });
     return {
+      currentLanguage: languageStore.currentLanguage,
+      translations,
       initialSlideIndex: slideStore.slideIndex, // Uzyskaj aktualny slideIndex ze store
     };
   },
@@ -60,7 +68,7 @@ export default {
   },
   methods: {
     nextSlide() {
-      if  (this.currentSlide == 4) {
+      if  (this.currentSlide == this.slides.length - 1) {
         // Przejście na nową stronę
         const slideStore = useSlideStore();
         slideStore.setSlideIndex(0);
@@ -73,7 +81,7 @@ export default {
       if (this.currentSlide == 0) {
         // Przejście na nową stronę
         const slideStore = useSlideStore();
-        slideStore.setSlideIndex(2);
+        slideStore.setSlideIndex(3);
         this.$router.push('/about'); // Zakładając, że używasz Vue Router
       } else {
         this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
@@ -146,12 +154,13 @@ export default {
 
 .caption {
   position: absolute;
+  white-space: pre-line;
   margin-top: 20px;
   top: 50%;
   left: 45%;
   transform: translate(-50%, -50%);
   text-align: left;
-  width: 60%;
+  width: 70%;
 
 }
 
@@ -160,8 +169,13 @@ export default {
 }
 
 .caption p {
-  font-size: 16px;
+  font-size: 12pt;
+  line-height: 20pt; 
   margin: 0;
+}
+
+.caption p.title {
+  font-size: 20pt;
 }
 
 .carousel-controls {

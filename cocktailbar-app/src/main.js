@@ -22,6 +22,8 @@ app.use(VueGoogleMaps, {
     },
   });
 
+
+  
 app.directive('click-outside', ClickOutside);
 app.mount('#app')
 
